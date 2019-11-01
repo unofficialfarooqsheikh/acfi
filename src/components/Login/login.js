@@ -9,7 +9,7 @@ const login = (props) => (
 
             <Grid container direction="row" justify="center" alignItems="stretch" className={classes.Login}>
                 <Grid item xs={4} zeroMinWidth className={classes.Logindivs}>
-                <Left passwordshow={props.psdshow} click={props.click}/>
+                <Left psdshow={props.psdshow} click={props.click} />
                 </Grid>
 
                 <Grid item xs={8} zeroMinWidth className={classes.Logindivs}>

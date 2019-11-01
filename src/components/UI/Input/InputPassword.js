@@ -25,7 +25,7 @@ const inputPassword= (props) => {
                 <InputLabel htmlFor="standard-adornment-password">{props.Password}</InputLabel>
                 <Input
                     id="standard-adornment-password"
-                    type={props.psdshow ? 'text' : 'password'}
+                    type={props.pass? 'text' : 'password'}
                     // value={values.password}
                     // onChange={handleChange('password')}
                     endAdornment={
@@ -35,7 +35,7 @@ const inputPassword= (props) => {
                         onClick={props.click}
                         // onMouseDown={handleMouseDownPassword}
                         >
-                        {props.psdshow  ? <Visibility /> : <VisibilityOff />}
+                        {props.pass  ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
                     }

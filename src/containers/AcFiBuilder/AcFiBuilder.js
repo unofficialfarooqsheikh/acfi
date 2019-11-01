@@ -37,7 +37,7 @@ class AcFiBuilder extends Component {
         }
         return(
             <Wrap className={classes.AcFi}>
-                <Login psdshow={this.state.loginAllowed} click={this.showPasswordHandler}/>
+                <Login psdshow={this.state.loginAllowed} click={this.showPasswordHandler} />
                 {mainPage}
             </Wrap>
         );
