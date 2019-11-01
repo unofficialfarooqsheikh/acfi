@@ -1,0 +1,10 @@
+.Login{
+    background-color: rgba(92, 90, 90, 0.411);
+    
+}
+.Logindivs{
+    border-radius: 5px;
+    height: 45rem;
+    border: 0.5px solid black;
+    padding: 25px;
+}

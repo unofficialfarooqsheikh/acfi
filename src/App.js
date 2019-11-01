@@ -1,12 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Wrap from './Hoc/Wrap'
+import AcFiBuilder from '../src/containers/AcFiBuilder/AcFiBuilder'
+
+
 
 function App() {
+
   return (
-    <div className="App">
-      
-    </div>
+    <Wrap>
+      <AcFiBuilder/>
+    </Wrap>
   );
 }
 
