@@ -1,25 +1,27 @@
 .Login {
+    direction: column;
     width: 100vw;
     height: 93vh;
     margin: auto;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
-    border-bottom-left-radius: 63px;
-    border-bottom-right-radius: 63px;
     /* background-color: rgba(92, 90, 90, 0.411); */
     box-shadow: 10px 20px 8px 8px rgba(0, 0, 0, 0.2), 14px -4px 20px 1px rgba(0, 0, 0, 0.19);
+    /* border: 2px solid red; */
 }
 .LoginDivsLeft{
     border-radius: 5px;
     /* border: 0.5px solid White; */
     padding: 25px;
+    /* border: 2px solid blue; */
 }
 .LoginDivsRight
 {
     border-radius: 5px;
     /* border: 0.5px solid White; */
     padding: 0px;
+    /* border: 2px solid yellow; */
 }
 .right{
 padding: 0px;
@@ -29,13 +31,14 @@ border-bottom-right-radius: 63px;
 .rightImg
 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    max-width: 100%;
-    height: 93vh;
+    width: 100%;
+    height: 30vh;
     border-radius: 8px;
-    -webkit-filter: blur(1px);filter: blur(1px);
-    border-bottom-right-radius: 63px;
 }
-
+.field{
+    text-align: left;
+    margin-left: 42px;
+}
 .left
 {
    
@@ -48,11 +51,50 @@ border-bottom-right-radius: 63px;
 {
 
 }
+.playbtn{
+    width: 14vw;
+    height: 7vh;
+    display:inline-block;
+    position: absolute;
+    top: 29vh;
+    left:43vw;
+}
 
-@media (min-width: 500px) and (max-height: 400px) {
+@media (min-width: 600px) and (min-height: 500px) {
     .Login{
-        direction: column;
+        direction: row;
+        text-align: left;
+        /* border-bottom-left-radius: 63px;
+        border-bottom-right-radius: 63px; */
     }
+    .rightImg{
+        height: 93vh;
+        box-shadow: -19px 4px 8px 5px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        max-width: 100%;
+         border-radius: 8px;
+        -webkit-filter: blur(0.5px);filter: blur(0.5px);
+         /* border-bottom-right-radius: 63px; */
+        border-left: 2px solid black;
+    }
+    .field
+    {
+        text-align: left;
+        margin-left: 0px;
+    }
+    .playbtn{
+        width: 4vw;
+        height: 8vh;
+        display: inline-block;
+        position: absolute;
+        top: 46vh;
+        left: 32vw;
+        z-index: 800;
+        border-radius: 50px;
+        border: solid 6px;
+        background: white;
+        margin:0px;
+    }
+
 }
 /* 
 @media (min-width: 500px) and (min-height: 401px) {

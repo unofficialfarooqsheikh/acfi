@@ -16,32 +16,33 @@ const inputPassword= (props) => {
     
   return (
       
-        <div>
+        <div className={props.className}>
             <FormControl >
-                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                <Input
-                    id="standard-adornment-password"
-                    type={props.pass? 'text' : 'password'}
-                    // value={values.password}
-                    // onChange={handleChange('password')}
-                    onChange={(event) => 
-                        {    
-                            //  console.log("update");
-                             props.inputPassword(event);
-                             
-                        }}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={props.click}
-                        // onMouseDown={handleMouseDownPassword}
-                        >
-                        {props.pass  ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                />
+
+                    <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                    <Input 
+                        id="standard-adornment-password"
+                        type={props.pass? 'text' : 'password'}
+                        // value={values.password}
+                        // onChange={handleChange('password')}
+                        onChange={(event) => 
+                            {    
+                                //  console.log("update");
+                                 props.inputPassword(event);
+                                 
+                            }}
+                        endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={props.click}
+                            // onMouseDown={handleMouseDownPassword}
+                            >
+                            {props.pass  ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                        </InputAdornment>
+                        }
+                    />
                 </FormControl>
         </div>
 

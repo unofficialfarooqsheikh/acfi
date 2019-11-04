@@ -9,6 +9,7 @@ import { useMediaQuery } from "@material-ui/core";
 const Login = (props) => {
     const matches = useMediaQuery('(min-width:600px)')
     return(
+        
         <div>
 
             {matches && <Grid container direction="row" justify="center" alignItems="stretch" className={classes.Login}>
@@ -20,7 +21,9 @@ const Login = (props) => {
                 inputPassword={props.inputPassword}
                 submitLogin={props.submitLogin}
                 />
+                
             </Grid>
+            
             <Grid item xs={8} zeroMinWidth className={classes.LoginDivsRight}>
                 <Right/>
             </Grid>

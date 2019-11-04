@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Wrap from '../../../Hoc/Wrap';
 const inputUserName = (props) => (
 
-    <Wrap>
+    <Wrap className={props.className}>
          
                         <TextField 
                         required
