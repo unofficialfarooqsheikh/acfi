@@ -1,14 +1,11 @@
 import React from 'react';
-// import classes from './right.module.css';
+import classes from '../login.module.css'
 import Wrap from '../../../Hoc/Wrap'
-import { wrap } from 'module';
+import image from '../../../assets/image.png'
 
 const right = (props) => (
-    <Wrap>
-        <p>loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem
-            loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem
-            loremloremloremloremloremloremloremloremloremloremloremloremlorem
-            </p>
+    <Wrap className={classes.right}>
+        <img src={image} alt="BackgroundImage" className={classes.rightImg}></img>
     </Wrap>
 );
     
