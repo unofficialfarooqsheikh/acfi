@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import classes from './AcFiBuilder.module.css';
+import classes from '../AcFiLogin/AcFiLogin.module.css'
 import Wrap from '../../Hoc/Wrap'
-import Layout from '../../components/Layout/Layout';
-import Login from '../../components/Login/login'
+// import Layout from '../../components/Layout/MainPageLayout/MainPageLayout';
+import Login from '../../components/Login/login';
 
 class AcFiBuilder extends Component {
 
@@ -36,7 +36,12 @@ class AcFiBuilder extends Component {
 
         if(this.state.loginInputs.username === this.state.loginCredentials.username && this.state.loginInputs.password === this.state.loginCredentials.password){
             suc.loginSuccess= true;
-            this.setState({loginSuccess: suc});
+            this.setState({
+                loginInputs: {
+                    username: '',
+                    password: ''
+                },
+                loginSuccess: suc});
         }
         else{
             alert('Please Check Your Email & Password');
@@ -60,27 +65,21 @@ class AcFiBuilder extends Component {
     }
 
     render(){
-        let mainPage = null;
         let loginPage = (<Login psdshow={this.state.loginAllowed} 
             click={this.showPasswordHandler} 
             loginCheck={this.loginHandler} 
             inputUserName={(event) => this.inputUserNameHandler(event)}
             inputPassword={(event) => this.inputPasswordHandler(event)}
             submitLogin={this.loginHandler}
+            un={this.state.loginInputs.username}
             />);
         if(this.state.loginSuccess)
         {
-            mainPage = (
-                <Layout>
-                    This Layout has a div a sidebar and a menu bar
-                </Layout>
-                );
             loginPage=null;
         }
         return(
             <Wrap className={classes.AcFi}>
                 {loginPage}
-                {mainPage}
             </Wrap>
         );
     }

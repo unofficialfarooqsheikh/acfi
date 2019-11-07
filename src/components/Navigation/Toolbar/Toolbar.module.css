@@ -1,0 +1,39 @@
+.Toolbar {
+    width: 100vw;
+    height: 56px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(254deg, rgb(32, 102, 134) 0%, rgba(0,155,255,1) 70%);
+    display: flex;
+    flex-wrap: column;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    z-index: 90;
+}
+.leftToolbar{
+    position: relative;
+    justify-content: flex-start;
+    width:  15vw;
+    background:  rgb(32, 102, 134);
+    padding-left: 10px;
+}
+.rightToolbar{
+    position: relative;
+    right:0;
+    width: calc(100% - 15vw);     
+}
+.Toolbar nav {
+    height: 100%;
+}
+
+@media (max-width: 600px) {
+.leftToolbar{
+    width: 30vw;
+}
+.rightToolbar{
+    width: calc(100% - 30vw); 
+}
+}

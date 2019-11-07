@@ -1,15 +1,17 @@
 import React from 'react';
-import Wrap from './Hoc/Wrap'
-import AcFiBuilder from '../src/containers/AcFiBuilder/AcFiBuilder'
-
+import Wrap from './Hoc/Wrap';
+// import AcFiLogin from '../src/containers/AcFiLogin/AcFiLogin';
+import MainContainer from '../src/containers/MainContainer/MainContainer';
+import {BrowserRouter} from 'react-router-dom';
 
 
 function App() {
-
   return (
-    <Wrap>
-      <AcFiBuilder/>
-    </Wrap>
+    <BrowserRouter>
+      <Wrap>
+        <MainContainer/>
+      </Wrap>
+    </BrowserRouter>
   );
 }
 
