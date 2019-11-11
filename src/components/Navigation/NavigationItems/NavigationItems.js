@@ -7,6 +7,10 @@ const navigationItems = (props) => {
     return(
     <div className={classes.NavigationItems}>
         <ul className={classes.NavigationItems}>
+            <li><NavLink to={{
+                pathname: '/mainpage/WorkForce'
+                }} activeStyle={{
+                    color: '#fa923f'}}><span className={classes.main}>W</span> <span className={classes.extra}>WorkForce</span></NavLink>  </li> 
             <li> <NavLink to={{
                     pathname: '/mainPage/Payroll'
                     }}
@@ -14,10 +18,6 @@ const navigationItems = (props) => {
                         color: '#fa923f'}} >
                     <span className={classes.main}>P</span> <span className={classes.extra}>Payroll</span>  
                  </NavLink></li>    
-            <li><NavLink to={{
-                pathname: '/mainpage/WorkForce'
-                }} activeStyle={{
-                    color: '#fa923f'}}><span className={classes.main}>W</span> <span className={classes.extra}>WorkForce</span></NavLink>  </li> 
             <li><NavLink to={{
                 pathname: '/mainpage/2'
             }} activeStyle={{

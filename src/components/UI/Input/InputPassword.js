@@ -31,6 +31,7 @@ const inputPassword= (props) => {
                                  props.inputPassword(event);
                                  
                             }}
+                            error={props.allowed.loginCheck}
                         endAdornment={
                         <InputAdornment position="end">
                             <IconButton

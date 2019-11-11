@@ -7,7 +7,7 @@ import {Route} from 'react-router-dom';
 class MainContainer extends Component {
 
     render() {
-
+        // console.log("Maincontainer.js"+this.props);
         return (
 
             <div >

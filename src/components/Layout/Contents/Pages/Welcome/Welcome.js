@@ -5,11 +5,11 @@ import {withRouter} from 'react-router-dom';
 
 class Welcome extends Component {
     state = {
-      date: new Date()
+      date: new Date(),
     }
     
     componentDidMount() {
-      this.timerId = setInterval(() => this.tick(), 1000);
+      this.timerId = setInterval(() => this.tick(), (1000*30));
     }
   
     componentWillUnmount() {
@@ -46,10 +46,21 @@ class Welcome extends Component {
             time="Day";
 
         }
-        console.log(this.props);
-      return (
+        // console.log( this.props);
+        var UserName;
+        if(this.props.location.state === "undefined" || this.props.location.state==null)
+        {
+         UserName= "User";
+        }
+        else{
+         UserName= this.props.location.state.names;
+        }
+        
+       return (
             <div>
-            <h1>Welcome </h1>
+            <h1>Welcome 
+            {" "+UserName}
+             </h1>
             <p>Good {time}</p>
             </div>
         );

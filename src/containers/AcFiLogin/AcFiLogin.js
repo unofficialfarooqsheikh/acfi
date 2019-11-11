@@ -3,6 +3,7 @@ import classes from '../AcFiLogin/AcFiLogin.module.css'
 import Wrap from '../../Hoc/Wrap'
 // import Layout from '../../components/Layout/MainPageLayout/MainPageLayout';
 import Login from '../../components/Login/login';
+import {Redirect} from 'react-router-dom';
 
 class AcFiBuilder extends Component {
 
@@ -11,8 +12,10 @@ class AcFiBuilder extends Component {
             username: 'Admin',
             password: 'Admin'
         },
+        logedInUser:'',
         loginSuccess:false,
         loginAllowed: false,
+        loginCheck:false,
         loginInputs: {
             username: '',
             password: ''
@@ -30,22 +33,34 @@ class AcFiBuilder extends Component {
     }
     loginHandler =() => {
         const suc = {
-            ...this.state.loginSuccess
+            ...this.state
         }
-        console.log(this.state.loginInputs ,"login inputs","login Credentials", this.state.loginCredentials );
-
+        // console.log(this.state.loginInputs ,"login inputs","login Credentials", this.state.loginCredentials );
         if(this.state.loginInputs.username === this.state.loginCredentials.username && this.state.loginInputs.password === this.state.loginCredentials.password){
             suc.loginSuccess= true;
+            suc.logedInUser = this.state.loginCredentials.username;
+            // console.log(suc.logedInUser);
             this.setState({
                 loginInputs: {
                     username: '',
                     password: ''
                 },
-                loginSuccess: suc});
+                loginSuccess: suc.loginSuccess,
+                logedInUser: suc.logedInUser});
         }
         else{
             alert('Please Check Your Email & Password');
-        }
+            // highLight the username and password in red for 2secs
+            this.setState({
+                loginCheck: (!this.state.loginAllowed)
+            })
+            setTimeout(() => {
+                this.setState({
+                    loginCheck: (this.state.loginAllowed)
+                })
+            }, 2000);
+        }   
+       
     }
     inputUserNameHandler = (event) => {
         const inputEmail = {
@@ -63,23 +78,36 @@ class AcFiBuilder extends Component {
         this.setState({ loginInputs: inputEmail});
         // console.log("inInputChange Password");
     }
-
+  
     render(){
+        
+        
         let loginPage = (<Login psdshow={this.state.loginAllowed} 
             click={this.showPasswordHandler} 
             loginCheck={this.loginHandler} 
             inputUserName={(event) => this.inputUserNameHandler(event)}
             inputPassword={(event) => this.inputPasswordHandler(event)}
             submitLogin={this.loginHandler}
-            un={this.state.loginInputs.username}
+            un={this.state}
             />);
+            let renderLink = null;
         if(this.state.loginSuccess)
-        {
-            loginPage=null;
-        }
+        {   
+               loginPage=null;
+                renderLink = (  
+                        <Redirect to={{
+                            pathname: '/mainPage',
+                            state: { names: this.state.logedInUser}
+                            //      
+                            // }
+                            }} />
+                );
+            }
+
         return(
             <Wrap className={classes.AcFi}>
                 {loginPage}
+                {renderLink}
             </Wrap>
         );
     }
