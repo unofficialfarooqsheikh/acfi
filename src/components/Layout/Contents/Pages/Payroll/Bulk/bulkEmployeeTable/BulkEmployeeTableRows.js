@@ -9,6 +9,7 @@ const BulkEmployeeTableRows =(props) => {
  
             <tr>
             <td><InputGroup.Checkbox /></td>
+            <td>{props.index}</td>
             <td>{props.id}</td>
             <td>{props.employeeName}</td>
             <td>{props.employeeSalary}</td>

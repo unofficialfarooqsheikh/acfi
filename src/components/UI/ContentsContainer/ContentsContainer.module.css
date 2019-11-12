@@ -4,6 +4,7 @@
     margin-left: 15vw;
     height: calc(100vh - 56px);
     width: calc(100% - 15vw);
+    overflow-y: scroll;
 }
 @media (max-width: 600px) {
     

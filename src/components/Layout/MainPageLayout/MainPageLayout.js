@@ -8,19 +8,21 @@ import ContentsContainer from '../../UI/ContentsContainer/ContentsContainer';
 import Welcome from '../Contents/Pages/Welcome/Welcome';
 import Payroll from '../Contents/Pages/Payroll/Payroll';
 import WorkForce from '../Contents/Pages/WorkForce/WorkForce';
+import ProtectedRoute from '../../../containers/ProtectedRoute/ProtectedRoute';
 
 
 const MainPageLayout =( props ) => {
-    // console.log("MainPageLayout.js"+props);
+    // console.log("MainPageLayout.js",props);
     return(<Wrap>
-        <div>
+        <div >
             <SideDrawer /> 
             <Toolbar /> 
             <Backdrop />
             <ContentsContainer >
-            <Route path="/mainPage/Payroll" component={Payroll}/>
-            <Route path="/mainPage" exact component={Welcome}/>
-            <Route path="/mainPage/WorkForce" exact component={WorkForce}/>
+            <ProtectedRoute path="/mainPage/Payroll" component={Payroll}/>
+            <ProtectedRoute path="/mainPage" exact component={Welcome}/>
+            <ProtectedRoute path="/mainPage/WorkForce" exact component={WorkForce}/>
+        
             </ContentsContainer>
         </div>
     </Wrap>);   

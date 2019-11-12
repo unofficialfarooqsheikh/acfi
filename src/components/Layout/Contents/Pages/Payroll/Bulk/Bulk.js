@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import BulkEmployeeTableRows from './bulkEmployeeTable/BulkEmployeeTableRows';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import Search from './Search/Search'
 
 class Bulk extends Component{
     state = {
@@ -42,11 +43,12 @@ class Bulk extends Component{
 render(){
     console.log(this.state.employeeDetails)
    
-        let Employees = this.state.employeeDetails.map(alldata =>
+        let Employees = this.state.employeeDetails.map( (alldata,i) =>
             {
                 return <BulkEmployeeTableRows
                          key={alldata.id}
                          id={alldata.id} 
+                         index={i+1}
                          employeeName={alldata.employee_name} 
                          employeeSalary={alldata.employee_salary}
                          />
@@ -55,25 +57,27 @@ render(){
     return(
 
         <div>
-            <Table striped bordered hover size="sm">
-                    <thead>
-                    <tr>
-                    <th><input type='checkbox' 
-                    // onClick={SelectAllHandler}
-                    />Tick</th>
-                    <th>Employee Id</th>
-                    <th>Employee Name</th>
-                    <th>Employee Salary</th>
-                    <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                <Search /> 
+                <h3 style={{display:"inline"}}>Pay roll for the month of:</h3><h3 style={{display:"inline"}}>Month_Name</h3>
+                <Table striped bordered hover size="sm">
+                        <thead>
+                        <tr>
+                        <th><input type='checkbox' 
+                        // onClick={SelectAllHandler}
+                        />Tick</th>
+                        <th>Employee Id</th>
+                        <th>Employee Name</th>
+                        <th>Employee Salary</th>
+                        <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                    {Employees }
+                        {Employees }
 
-                    </tbody>
-                    
-            </Table>
+                        </tbody>
+                        
+                </Table>
         </div>
         );
 
