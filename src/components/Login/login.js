@@ -6,7 +6,7 @@ import Right from './Right/Right';
 
 
 const Login = (props) => {
-    // console.log('login.js',props)
+    console.log(props)
     return(
         
         <div>

@@ -9,10 +9,10 @@ import Button from 'react-bootstrap/Button';
 
 const left = (props) => {
      const ex = "Think smart!";
-     console.log("Left.js",props);
+     // console.log("Left.js"+props);
      return(
      <Wrap >
-     <form className={classes.left}>
+     <div className={classes.left}>
                <Logo />
                <h1 ><span>A</span>c<span>F</span>i</h1>
                <p className={classes.sub}>{ex}</p>
@@ -22,13 +22,13 @@ const left = (props) => {
                     <InputPassword className={classes.field}Label="Password" pass={props.psdshow} click={props.click} inputPassword={props.inputPassword} allowed={props.un}/>
                </div>
                <br/>
-               <Button variant="secondary"  value="Submit" onClick={props.submitLogin} style={{
+               <Button variant="secondary" type="submit" value="Submit" onClick={props.submitLogin} style={{
                margin: '10px'
                }} >Submit</Button>
                <Button variant="light" style={{
                margin: '10px'
                }}>Forgot Password</Button>
-     </form>
+     </div>
      </Wrap>)
 };
     

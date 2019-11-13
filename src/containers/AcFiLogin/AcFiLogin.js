@@ -3,11 +3,7 @@ import classes from '../AcFiLogin/AcFiLogin.module.css'
 import Wrap from '../../Hoc/Wrap'
 // import Layout from '../../components/Layout/MainPageLayout/MainPageLayout';
 import Login from '../../components/Login/login';
-import {Redirect,Route, withRouter} from 'react-router-dom';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import MainPageLayout from '../../components/Layout/MainPageLayout/MainPageLayout';
-
-
+import {Redirect} from 'react-router-dom';
 
 class AcFiBuilder extends Component {
 
@@ -45,6 +41,10 @@ class AcFiBuilder extends Component {
             suc.logedInUser = this.state.loginCredentials.username;
             // console.log(suc.logedInUser);
             this.setState({
+                loginInputs: {
+                    username: '',
+                    password: ''
+                },
                 loginSuccess: suc.loginSuccess,
                 logedInUser: suc.logedInUser});
         }
@@ -105,18 +105,13 @@ class AcFiBuilder extends Component {
             }
 
         return(
-            <Wrap >
-               <div className={classes.AcFi}> 
-               {loginPage}
-               </div>
+            <Wrap className={classes.AcFi}>
+                {loginPage}
                 {renderLink}
-                <Route path="/login"  component={ Login } />
-                <ProtectedRoute path="/mainPage"  component={ MainPageLayout } />
-                {/* <Redirect to={{pathname: '/'}} /> */}
             </Wrap>
         );
     }
 
 }
 
-export default withRouter(AcFiBuilder);
+export default AcFiBuilder;

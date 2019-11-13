@@ -1,6 +1,6 @@
 .SideDrawer {
     
-    /* position: fixed; */
+    position: relative;
     width: 15vw;
     height: 100vh;
     display: flex;
