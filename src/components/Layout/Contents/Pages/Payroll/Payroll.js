@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route,Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Bulk from './Bulk/Bulk';
 import PayrollType from './PayrollType/PayrollType';
 

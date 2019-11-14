@@ -2,14 +2,20 @@ import React,{Component} from 'react';
 import BulkEmployeeTableRows from './bulkEmployeeTable/BulkEmployeeTableRows';
 import classes from './Bulk.module.css'
 import Table from 'react-bootstrap/Table';
+import TextField from '@material-ui/core/TextField';
+import InputSelect from '../../../../../UI/Input/InputSelect'
+import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
-import InputGroup from 'react-bootstrap/InputGroup';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class Bulk extends Component{
     state = {
         employeeDetails: [],
         error: false,
-        selectAll: false
+        selectAll: false,
+        searchTerm: '',
+        searchType:'1'
     }
     componentDidMount(){
 
@@ -36,45 +42,58 @@ class Bulk extends Component{
             // });
     }
     componentDidUpdate(){
-        console.log(this.state);
+        console.log(this.state.searchType);
     }
     
     selectAllHandler=(e) => {
-        // const selectAll = { ...this.state.selectAll};
         const temp = [...this.state.employeeDetails];
            
-        this.setState({employeeDetails: temp});
-        {    
-            // console.log('selectAllChecked',data.checkState);
-            // const checkState= data.checkState
-            // if(e.target.checked){
-            //     this.setState({ checkState: true })
-            // } 
-            // else{
-            //     this.setState({ checkState: false })
-            // } 
+        this.setState({employeeDetails: temp}); 
             temp.forEach(temp => temp.checkState = e.target.checked)
-            console.log(e.target.checked)
+            // console.log(e.target.checked)
             this.setState({temp: temp})
-        }
     }
     individualChangeHandler=(e,id) => {
-        console.log(e.target.checked);
+        // console.log(e.target.checked);
         const rowId = this.state.employeeDetails.findIndex(
             p => {
-                console.log(p.id)
+                // console.log(p.id)
                return p.id === id
             });
             console.log(rowId);
             const temp = [...this.state.employeeDetails];
             temp[rowId].checkState = e.target.checked;
         this.setState({employeeDetails: temp});
-        console.log('hey 2');
+        // console.log('hey 2');
+    }
+    searchHandler = (e) => {
+        this.setState({searchTerm: e.target.value})
+        // console.log(this.state.searchTerm)
+    }
+    searchTypeHandler = (e) => {
+        this.setState({searchType:e.target.value})
+        // console.log(e.target.value)
     }
 render(){
     // console.log(this.state)
-   
-        let Employees = this.state.employeeDetails.map((alldata, sno) =>
+    //  the filtering of employees from state based on the input at search box
+        const filteredEmployeeDetails = this.state.employeeDetails.filter(
+            (employee) => {
+                let FinalResult;
+                if(this.state.searchType == 1){
+                    FinalResult = employee.id.toLowerCase().indexOf(this.state.searchTerm.toLowerCase());
+                    // console.log('name runs')
+                }
+                else{
+                    FinalResult = employee.employee_name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase());
+                    // console.log('id runs')
+                }
+                // console.log(resultByName,FinalResult)
+                return FinalResult !==-1;
+            }
+        )
+
+        let Employees = filteredEmployeeDetails.map((alldata, sno) =>
             {
                 return <BulkEmployeeTableRows
                         key={alldata.id}
@@ -91,6 +110,33 @@ render(){
     return(
 
         <div>
+            
+            <div className={classes.margin}>
+            <SearchIcon />
+                        <div >
+                        <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={this.state.searchType}
+                        onChange={this.searchTypeHandler}
+                        margin='dense' 
+                        variant='outlined'
+                        displayEmpty
+                        >  
+                        {/* <MenuItem value="" default disabled> <em>Select &nbsp; </em></MenuItem>  */}
+                        <MenuItem value={1} default>Employee Id &nbsp;</MenuItem>
+                        <MenuItem value={2}>Employee Name &nbsp;</MenuItem>
+                        </Select>
+                    </div>
+            <TextField 
+                margin='dense' 
+                variant='outlined'
+                fullWidth 
+                id="input-with-icon-grid"
+                label="Your Search Starts here" 
+                onChange={this.searchHandler}
+            />
+      </div>
             <Table striped bordered hover size="sm"  className={classes.Bulk}>
                     <thead>
                     <tr>
@@ -102,7 +148,6 @@ render(){
                     <th><input type="checkbox" id="box-1"  onChange={(e) =>{this.selectAllHandler(e)}}/>
                         <label htmlFor="box-1">Select All</label>
                         </th>
-                    <th></th>
                     </tr>
                     </thead>
                     <tbody >

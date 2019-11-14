@@ -1,6 +1,4 @@
 import React from 'react';
-import InputGroup from 'react-bootstrap/InputGroup'
-import { resolvePreset } from '@babel/core';
 
 const BulkEmployeeTableRows =(props) => {
     // console.log(props.checkedState)
