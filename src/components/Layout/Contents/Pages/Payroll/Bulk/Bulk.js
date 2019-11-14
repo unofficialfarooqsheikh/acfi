@@ -3,11 +3,8 @@ import BulkEmployeeTableRows from './bulkEmployeeTable/BulkEmployeeTableRows';
 import classes from './Bulk.module.css'
 import Table from 'react-bootstrap/Table';
 import TextField from '@material-ui/core/TextField';
-import InputSelect from '../../../../../UI/Input/InputSelect'
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 
 class Bulk extends Component{
     state = {
@@ -15,23 +12,23 @@ class Bulk extends Component{
         error: false,
         selectAll: false,
         searchTerm: '',
-        searchType:'1'
     }
     componentDidMount(){
-
+        //here the data from dummy API and storing in the data by splicing it from API
         axios.get('http://dummy.restapiexample.com/api/v1/employees')
             .then(response =>{
                 // console.log(response);
-                const data = response.data.slice(0,30);
+                //slice data
+                const data = response.data.slice(0,100);
                 // console.log(data);
+                //making data be duplicted in a variable which can be stored in the state
                 const UpdatedEmployeeDetails = data.map(alldata =>{
 
                     return{
                         ...alldata,
                     checkState: false
-                }
-
-                } );
+                }});
+                //set the state using the data stored in the a constant
                 this.setState ({
                     employeeDetails: UpdatedEmployeeDetails
                 })
@@ -42,7 +39,7 @@ class Bulk extends Component{
             // });
     }
     componentDidUpdate(){
-        console.log(this.state.searchType);
+        // console.log(this.state);
     }
     
     selectAllHandler=(e) => {
@@ -60,7 +57,7 @@ class Bulk extends Component{
                 // console.log(p.id)
                return p.id === id
             });
-            console.log(rowId);
+            // console.log(rowId);
             const temp = [...this.state.employeeDetails];
             temp[rowId].checkState = e.target.checked;
         this.setState({employeeDetails: temp});
@@ -80,19 +77,29 @@ render(){
         const filteredEmployeeDetails = this.state.employeeDetails.filter(
             (employee) => {
                 let FinalResult;
-                if(this.state.searchType == 1){
-                    FinalResult = employee.id.toLowerCase().indexOf(this.state.searchTerm.toLowerCase());
+                let filtersearch=(a) => {
+                    if(a >= 0)
+                    {
+                        return 0
+                    }
+                    else if(a < 0)
+                    {
+                        return -1
+                    }}
+                    let filteredById = filtersearch(employee.id.indexOf(this.state.searchTerm));
                     // console.log('name runs')
-                }
-                else{
-                    FinalResult = employee.employee_name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase());
-                    // console.log('id runs')
-                }
+                    // console.log('employee.employee_id',employee.id)
+                    // console.log('employee.employee_name',employee.employee_name)
+                    // console.log('employee.employee_name index of',(employee.id.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) ) )
+                    let filteredByName = filtersearch(employee.employee_name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()));
+                    let filteredBySalary = filtersearch(employee.employee_salary.indexOf(this.state.searchTerm));
+                    FinalResult = (filteredById + filteredByName + filteredBySalary);
+
                 // console.log(resultByName,FinalResult)
-                return FinalResult !==-1;
+                return FinalResult !==-3;
             }
         )
-
+        // console.log('------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
         let Employees = filteredEmployeeDetails.map((alldata, sno) =>
             {
                 return <BulkEmployeeTableRows
@@ -113,21 +120,6 @@ render(){
             
             <div className={classes.margin}>
             <SearchIcon />
-                        <div >
-                        <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={this.state.searchType}
-                        onChange={this.searchTypeHandler}
-                        margin='dense' 
-                        variant='outlined'
-                        displayEmpty
-                        >  
-                        {/* <MenuItem value="" default disabled> <em>Select &nbsp; </em></MenuItem>  */}
-                        <MenuItem value={1} default>Employee Id &nbsp;</MenuItem>
-                        <MenuItem value={2}>Employee Name &nbsp;</MenuItem>
-                        </Select>
-                    </div>
             <TextField 
                 margin='dense' 
                 variant='outlined'
