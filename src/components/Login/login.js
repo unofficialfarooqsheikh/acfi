@@ -13,20 +13,16 @@ const Login = (props) => {
 
             <div className={classes.Login}>
 
-               <div className={classes.LoginDivsLeft}>
-                <Left psdshow={props.psdshow} 
+               
+                <Left classes={classes}
+                psdshow={props.psdshow} 
                 click={props.click} 
                 inputUserName={props.inputUserName} 
                 inputPassword={props.inputPassword}
                 submitLogin={props.submitLogin}
                 un={props.un}
                 />
-                
-            </div>
-            
-            <div  className={classes.LoginDivsRight}>
-                <Right/>
-            </div>
+                <Right classes={classes}/>
             </div> 
 
       </div>

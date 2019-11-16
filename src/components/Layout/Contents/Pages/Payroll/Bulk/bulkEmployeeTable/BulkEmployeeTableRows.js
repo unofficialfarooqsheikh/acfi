@@ -7,7 +7,6 @@ const BulkEmployeeTableRows =(props) => {
       
  
             <tr >
-            
                 <td>{props.sno}</td>
                 <td>{props.id}</td>
                 <td>{props.employeeName}</td>
@@ -21,6 +20,7 @@ const BulkEmployeeTableRows =(props) => {
                         />
                             <label htmlFor={props.id}>Select</label>
                     </td>
+                    
             </tr>
        
     );

@@ -37,6 +37,7 @@ class Bulk extends Component{
             //     // console.log(error);
             //     this.setState({error: true});
             // });
+            //dfghsidfgsdfhggffhfghfd
     }
     componentDidUpdate(){
         // console.log(this.state);
