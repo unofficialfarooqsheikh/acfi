@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
+import classes from '../Bulk.module.css';
+import ExpandedEmployeeDetails from './ExpandedEmployeeDetails';
 
 const BulkEmployeeTableRows =(props) => {
     // console.log(props.checkedState)
+        const [show,setShow] =useState(false);
+        const ExpandHandler =() =>{
+                setShow(!show); 
+        }
     return(
-
+        
       
- 
-            <tr >
+        <tbody >
+                <tr onClick={ExpandHandler} className={classes.BulkEmployeeTable}>
                 <td>{props.sno}</td>
                 <td>{props.id}</td>
                 <td>{props.employeeName}</td>
@@ -19,10 +25,12 @@ const BulkEmployeeTableRows =(props) => {
                         checked={props.checkedState}  
                         />
                             <label htmlFor={props.id}>Select</label>
-                    </td>
-                    
+                    </td>  
             </tr>
-       
+            { show ? <ExpandedEmployeeDetails /> :null}
+        </tbody>
+            
+                
     );
 
 }

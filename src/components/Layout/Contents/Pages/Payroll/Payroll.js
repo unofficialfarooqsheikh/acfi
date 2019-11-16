@@ -9,8 +9,9 @@ render(){
     return(
      
           <div>
-                <Route path='/mainPage/Payroll' exact component={PayrollType} />    
-                <Route path='/mainPage/Payroll/Bulk' exact component={Bulk} />
+                {/* <Route path='/mainPage/Payroll' exact component={PayrollType} />    
+                <Route path='/mainPage/Payroll/Bulk' exact component={Bulk} /> */}
+                <Bulk />
           </div>
     );
 };

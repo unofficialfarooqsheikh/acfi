@@ -4,6 +4,17 @@
 {
 
 }
+.BulkEmployeeTable:hover{
+ cursor: pointer;
+}
+.ExpandedEmployeeDetails{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.ExpandedEmployeeDetails > tbody{
+
+}
 .margin
 {
   display: flex;

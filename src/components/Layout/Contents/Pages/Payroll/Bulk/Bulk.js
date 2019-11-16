@@ -143,11 +143,10 @@ render(){
                         </th>
                     </tr>
                     </thead>
-                    <tbody >
+                   
 
                     {Employees }
 
-                    </tbody>
                     
             </Table>
         </div>
