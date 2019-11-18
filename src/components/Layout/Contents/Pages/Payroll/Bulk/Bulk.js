@@ -5,6 +5,7 @@ import Table from 'react-bootstrap/Table';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
+import ExpandedEmployeeDetails from './bulkEmployeeTable/ExpandedEmployeeDetails';
 
 class Bulk extends Component{
     state = {
@@ -12,6 +13,9 @@ class Bulk extends Component{
         error: false,
         selectAll: false,
         searchTerm: '',
+        individualEmployee: false,
+        individualEmployeeId: null,
+        individualEmployeeData: null
     }
     componentDidMount(){
         //here the data from dummy API and storing in the data by splicing it from API
@@ -19,11 +23,11 @@ class Bulk extends Component{
             .then(response =>{
                 // console.log(response);
                 //slice data
-                const data = response.data.slice(0,100);
+                const data = response.data.slice(0,10);
                 // console.log(data);
                 //making data be duplicted in a variable which can be stored in the state
                 const UpdatedEmployeeDetails = data.map(alldata =>{
-
+                        
                     return{
                         ...alldata,
                     checkState: false
@@ -40,14 +44,14 @@ class Bulk extends Component{
             //dfghsidfgsdfhggffhfghfd
     }
     componentDidUpdate(){
-        // console.log(this.state);
+        console.log(this.state);
     }
     
     selectAllHandler=(e) => {
         const temp = [...this.state.employeeDetails];
            
         this.setState({employeeDetails: temp}); 
-            temp.forEach(temp => temp.checkState = e.target.checked)
+            temp.forEach(temp => temp.checkState = !temp.checkState)
             // console.log(e.target.checked)
             this.setState({temp: temp})
     }
@@ -55,11 +59,12 @@ class Bulk extends Component{
         // console.log(e.target.checked);
         const rowId = this.state.employeeDetails.findIndex(
             p => {
-                // console.log(p.id)
+                console.log(p.id,id)
                return p.id === id
             });
             // console.log(rowId);
             const temp = [...this.state.employeeDetails];
+            console.log(temp[rowId]);
             temp[rowId].checkState = e.target.checked;
         this.setState({employeeDetails: temp});
         // console.log('hey 2');
@@ -72,10 +77,18 @@ class Bulk extends Component{
         this.setState({searchType:e.target.value})
         // console.log(e.target.value)
     }
+    individualEmployeeHandler =(e,id) =>{
+        const indEmployee=this.state.individualEmployee
+        // console.log(e,id);
+        this.setState({individualEmployee: !(indEmployee),
+                       individualEmployeeData:this.state.employeeDetails[id],
+                       individualEmployeeId: id })
+        // console.log(this.state)
+    }
 render(){
     // console.log(this.state)
     //  the filtering of employees from state based on the input at search box
-        const filteredEmployeeDetails = this.state.employeeDetails.filter(
+        const filteredEmployeeDetails =this.state.employeeDetails.filter(
             (employee) => {
                 let FinalResult;
                 let filtersearch=(a) => {
@@ -94,42 +107,70 @@ render(){
                     // console.log('employee.employee_name index of',(employee.id.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) ) )
                     let filteredByName = filtersearch(employee.employee_name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()));
                     let filteredBySalary = filtersearch(employee.employee_salary.indexOf(this.state.searchTerm));
-                    FinalResult = (filteredById + filteredByName + filteredBySalary);
-
+                    if(!this.state.individualEmployee)
+                    {
+                        FinalResult = (filteredById + filteredByName + filteredBySalary);
+                    }
                 // console.log(resultByName,FinalResult)
                 return FinalResult !==-3;
             }
         )
         // console.log('------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
-        let Employees = filteredEmployeeDetails.map((alldata, sno) =>
-            {
-                return <BulkEmployeeTableRows
-                        key={alldata.id}
-                        sno={sno+1}
-                        id={alldata.id} 
-                        employeeName={alldata.employee_name} 
-                        employeeSalary={alldata.employee_salary}
-                        classes={classes}
-                        checkedState={alldata.checkState}
-                        change={(e) => this.individualChangeHandler(e,alldata.id) }
-                         />
-            });
+        let Employees;
+        let ExpandedEmployee;
+        if(!this.state.individualEmployee){
+         Employees = filteredEmployeeDetails.map((alldata, sno) =>
+        {
+            return <BulkEmployeeTableRows
+                    key={alldata.id}
+                    sno={sno+1}
+                    id={alldata.id} 
+                    ExpandHandler={(e)=>this.individualEmployeeHandler(e,sno)}
+                    employeeName={alldata.employee_name} 
+                    employeeSalary={alldata.employee_salary}
+                    classes={classes}
+                    checkedState={alldata.checkState}
+                    change={(e) => this.individualChangeHandler(e,alldata.id) }
+                     />
+        });
+        ExpandedEmployee = null;
+       }
+       else{
             // console.log(Employees)
+            const individualEmployeedata = this.state.individualEmployeeData;
+            Employees = (
+            
+            <BulkEmployeeTableRows
+                sno={1}
+                id={individualEmployeedata.id} 
+                ExpandHandler={(e)=>this.individualEmployeeHandler(e,individualEmployeedata.id)}
+                employeeName={individualEmployeedata.employee_name} 
+                employeeSalary={individualEmployeedata.employee_salary}
+                checkedState={individualEmployeedata.checkState}
+                change={(e) => this.individualChangeHandler(e,individualEmployeedata.id) }
+                />);
+                ExpandedEmployee= (<ExpandedEmployeeDetails employeeNumber={this.state.individualEmployeeData.id}
+                    employeeName={this.state.individualEmployeeData.employee_name} 
+                        />);
+       }
+        
+            
     return(
 
         <div>
             
             <div className={classes.margin}>
-            <SearchIcon />
-            <TextField 
-                margin='dense' 
-                variant='outlined'
-                fullWidth 
-                id="input-with-icon-grid"
-                label="Your Search Starts here" 
-                onChange={this.searchHandler}
-            />
-      </div>
+                    <SearchIcon />
+                    <TextField 
+                        margin='dense' 
+                        variant='outlined'
+                        fullWidth 
+                        id="input-with-icon-grid"
+                        label="Your Search Starts here" 
+                        onChange={this.searchHandler}
+                        disabled={this.state.individualEmployee}
+                    />
+            </div>
             <Table striped bordered hover size="sm"  className={classes.Bulk}>
                     <thead>
                     <tr>
@@ -146,9 +187,8 @@ render(){
                    
 
                     {Employees }
-
-                    
             </Table>
+            {ExpandedEmployee}
         </div>
         );
 

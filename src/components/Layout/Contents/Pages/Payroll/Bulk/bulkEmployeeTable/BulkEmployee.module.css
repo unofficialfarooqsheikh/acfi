@@ -1,0 +1,7 @@
+.Employee{
+    display: flex;
+    flex-wrap: wrap;
+}
+.Employee > div{
+
+}
