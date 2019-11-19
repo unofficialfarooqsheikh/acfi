@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './login.module.css';
 import Left from './Left/left';
-import Right from './Right/Right';
 // import { useMediaQuery } from "@material-ui/core";
 
 
@@ -10,7 +9,7 @@ const Login = (props) => {
     return(
         
         <div>
-
+            
             <div className={classes.Login}>
 
                
@@ -22,7 +21,7 @@ const Login = (props) => {
                 submitLogin={props.submitLogin}
                 un={props.un}
                 />
-                <Right classes={classes}/>
+                {/* <Right classes={classes}/> */}
             </div> 
 
       </div>

@@ -1,28 +1,40 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
+import React, {useState} from 'react';
+// import Button from 'react-bootstrap/Button';
 import classes from './PayrollType.module.css';
-import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
-const PayrollType =() => {
 
-        let buttonType= "primary";
-        return(
-            <div className={classes.PayrollTypeSelectorBackground}>
-                <div className={classes.PayrollTypeSelectorBox}>
-                    <div> 
-                        <p>Which type of payroll do you wish to generate?</p>
-                        
-                        <div className={classes.PayrollTypeSelectorButtons}>
-                            <Button variant={buttonType} style={{margin: '5px'}}>Individual</Button>
-                                <Link to={{
-                                    pathname: '/mainPage/Payroll/Bulk'
-                                }}><Button variant={buttonType} style={{margin: '5px'}}>Bulk</Button></Link>
-                        </div>
+const PayrollType = () => {
+    const [uploaded,
+        setUploaded] = useState(false);
+    const [uploadedFileName,setUploadedFileName] = useState(null);
+    const handleChange = (e) => {
+        console.log(e[0].name);
+        setTimeout(() => {
+            setUploaded(true);
+        }, 6000);
+        setUploadedFileName(e[0].name);
+    }
+    console.log(uploaded,uploadedFileName)
+    let buttonType = "primary";
+    
+    return (
+        
+        <div className={classes.PayrollTypeSelectorBackground}>
+            <div className={classes.PayrollTypeSelectorBox}>
+                <div>
+                    <p>Please Upload the L.O.P File</p>
+
+                    <div className={classes.PayrollTypeSelectorButtons}>
+                        <input type="file" onChange={(e) => handleChange(e.target.files)}/>
+                        { uploaded ?<Redirect to='/mainPage/Payroll/Bulk'/>: <p>File Uploaded {uploadedFileName}</p>}
                     </div>
+                    
                 </div>
             </div>
-        );
-    
-    };
+        </div>
+    );
+
+};
 
 export default PayrollType

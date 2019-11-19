@@ -3,5 +3,40 @@
     flex-wrap: wrap;
 }
 .Employee > div{
+    margin: 20px;
+}
+.Employee > div > table  {
+    border: solid;
+}
+.DetailsDiv
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.DetailsDiv > div{
+  
+}
+.DetailsDiv > div > div > span >label{
+    display: inline-block;
+    float: left;
+    clear: left; 
+    width: 250px;
+}
 
+button{
+    width:20%;
+    text-align: center;
+}
+.input > input:not(disabled){
+    background-color: white;
+    
+}
+.input > input:disabled{
+    background-color: burlywood;
+    background-image:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }

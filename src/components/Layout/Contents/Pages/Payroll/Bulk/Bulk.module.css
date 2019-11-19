@@ -9,12 +9,10 @@
 }
 .ExpandedEmployeeDetails{
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   justify-content: space-around;
 }
-.ExpandedEmployeeDetails > tbody{
 
-}
 .margin
 {
   display: flex;
