@@ -1,46 +1,41 @@
 .Login {
-    background-image: url(../../assets/image.png);
+    background-image: url(../../assets/image.jpg);
+    background-size: 100% 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     /* box-shadow: 0 2px 1px #ccc; */
-    margin: auto;
     height:100vh;
     width: 100vw;
-    
+    color: white;
 }
-.Login > div {
-    /* height: calc(100vh- 25px); */
-    /* background-color: red; */
-}
-.left {
-    /* margin-left:120px; */
 
-    box-shadow: 0 2px 1px #2989d8;
-    /* background-color: yellow; */
+.left {
+    
+    /* box-shadow: 0 2px 1px #2989d8; */
+    background-color: transparent;
 }
 .field {
     text-align: left;
 }
-.right {
-    /* border: 1px solid blue; */
-    flex: auto;
-    /* flex-grow: 3; */
-    /* background-color: rgb(76, 102, 76); */
+.left button{
+    width: fit-content;
 }
-
+.left input{
+    
+}
 /* .Img {
     /* max-width: -webkit-fill-available; */
     /* width: 75vw;
     height: 100vh; */
     /* object-fit: none; */
 /* }  */
-@media (max-width: 890px) {
+@media (max-width: 700px) {
     .Login {
-        flex-direction: column-reverse;
+        
     }
-    .Img{
-        width: 100vw;
-        height: 100vh;
+    .left{
+        
+        background-color: transparent;
     }
 }

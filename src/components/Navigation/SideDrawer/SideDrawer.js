@@ -10,11 +10,11 @@ const sideDrawer = ( props ) => {
     //     attachedClasses = [classes.SideDrawer, classes.Open];
     // }
     return (
-        <Wrap>
+        <Wrap >
             <Backdrop 
             // show={props.open} clicked={props.closed}
             />
-            <div className={classes.SideDrawer}>
+            <div className={classes.SideDrawer} style={props.width}>
                 <nav>
                     <NavigationItems />
                 </nav>

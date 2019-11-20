@@ -5,7 +5,7 @@ class ContentsContainer extends Component{
 
     render(){
         return(
-            <div className={classes.ContentsContainer}>
+            <div className={classes.ContentsContainer} style={this.props.margin}>
                 {this.props.children}
             </div>
         );

@@ -23,7 +23,7 @@ class Bulk extends Component{
             .then(response =>{
                 // console.log(response);
                 //slice data
-                const data = response.data.slice(0,10);
+                const data = response.data.slice(0,35);
                 // console.log(data);
                 //making data be duplicted in a variable which can be stored in the state
                 const UpdatedEmployeeDetails = data.map(alldata =>{
@@ -51,8 +51,8 @@ class Bulk extends Component{
         const temp = [...this.state.employeeDetails];
            
         this.setState({employeeDetails: temp}); 
-            temp.forEach(temp => temp.checkState = !temp.checkState)
-            // console.log(e.target.checked)
+            temp.forEach(temp => temp.checkState = e.target.checked)
+            console.log(e.target.checked)
             this.setState({temp: temp})
     }
     individualChangeHandler=(e,id) => {

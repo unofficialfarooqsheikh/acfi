@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Route,} from 'react-router-dom';
 import Wrap from '../../../Hoc/Wrap';
 import Toolbar from '../../Navigation/Toolbar/Toolbar';
@@ -11,13 +11,23 @@ import WorkForce from '../Contents/Pages/WorkForce/WorkForce';
 
 
 const MainPageLayout =( props ) => {
-    // console.log("MainPageLayout.js"+props);
+    const [sidenav,setSidenav] = useState(false);
+    const sidenavHandler =() => {
+        setSidenav(!sidenav);
+        console.log(sidenav);
+    } 
+    let width =(sidenav) ? { width:'20vw'}:{ width:'0' }
+    let margin =(sidenav) ? { marginLeft:'20vw',width: 'calc(100% - 20vw)'}:{ marginLeft:'0', width: '100%' }
+    let marginLeft =(sidenav) ? { marginLeft:'17%'}: null;
+    console.log(width,margin)  
+
+
     return(<Wrap>
         <div>
-            <SideDrawer /> 
-            <Toolbar /> 
+            { sidenav ? <SideDrawer width={width}/> : null }
+            <Toolbar sidenavHandler={sidenavHandler} marginLeft={marginLeft} sidenavOpen={sidenav}/> 
             <Backdrop />
-            <ContentsContainer >
+            <ContentsContainer margin={margin}>
             <Route path="/mainPage/Payroll" component={Payroll}/>
             <Route path="/mainPage" exact component={Welcome}/>
             <Route path="/mainPage/WorkForce" exact component={WorkForce}/>

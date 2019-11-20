@@ -2,8 +2,9 @@ import React,{useState} from 'react';
 import Button from 'react-bootstrap/Button';
 // import Table from 'react-bootstrap/Table';
 import classes from './BulkEmployee.module.css'
-import FormCheck from 'react-bootstrap/FormCheck';
-
+import Form from 'react-bootstrap/Form';
+// import FormCheck from 'react-bootstrap/FormCheck';
+import InputSwitch from '../../../../../../UI/Input/InputSwitch'
 
 
 const Tr =(props)=>{
@@ -95,16 +96,13 @@ const ExpandedEmployeeDetails = (props) =>{
                                     <th> Additional Components</th>
                                     </tr>
                                     <tr>
-                                    <th><FormCheck 
-                                        type="switch"
-                                        label="Bonus"
-                                    /></th>
+                                    <th>
+                                    <InputSwitch />
+                                    </th>
                                     </tr>
                                     <tr>
-                                    <th><FormCheck 
-                                        type="switch"
-                                        label="Arrears"
-                                    /></th>
+                                    <th>
+                                        <input type='checkbox' defaultChecked/><label htmlFor={props.id}>Arrears</label></th>
                                     </tr>
                             </thead>
                         </table>

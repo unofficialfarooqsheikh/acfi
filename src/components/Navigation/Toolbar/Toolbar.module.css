@@ -8,20 +8,49 @@
     display: flex;
     flex-wrap: column;
     justify-content: space-between;
-    align-items: center;
-    justify-content: center;
+    
     box-sizing: border-box;
     z-index: 90;
 }
 .leftToolbar{
     position: relative;
-    justify-content: flex-start;
-    width:  15vw;
+    justify-content: flex-end;
     background:  rgb(32, 102, 134);
-    padding-left: 10px;
+    
 }
+.container {
+    display: inline-block;
+    cursor: pointer;
+    align-items: flex-start;
+    -webkit-transition: margin-left 0.3s linear;
+    transition: margin-left 0.3s linear; 
+    margin-left: 0;
+    padding-left: 5px;
+  }
+ .bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change.bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change.bar2 {opacity: 0;}
+
+.change.bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
 .rightToolbar{
     position: relative;
+    align-items: center;
+    justify-content: center;
     right:0;
     width: calc(100% - 15vw);     
 }
@@ -31,9 +60,17 @@
 
 @media (max-width: 600px) {
 .leftToolbar{
-    width: 30vw;
+    /* width: 30vw !important; */
 }
 .rightToolbar{
-    width: calc(100% - 30vw); 
+    width: 100%; 
+}
+.bar1, .bar2, .bar3 {
+   
+    width: 20px;
+}
+.container{
+    padding-top: 5px;
+    padding-left: 5px;
 }
 }

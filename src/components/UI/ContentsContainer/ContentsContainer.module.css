@@ -1,7 +1,6 @@
 .ContentsContainer{
     position: absolute;
     margin-top: 56px;
-    margin-left: 15vw;
     height: calc(100vh - 56px);
     width: calc(100% - 15vw);
     overflow: scroll;
@@ -10,7 +9,7 @@
 @media (max-width: 600px) {
     
     .ContentsContainer{
-        margin-left: 30vw;
-        width: calc(100% - 30vw);
+        /* margin-left: 30vw !important;
+        width: calc(100% - 30vw); */
     }
 }

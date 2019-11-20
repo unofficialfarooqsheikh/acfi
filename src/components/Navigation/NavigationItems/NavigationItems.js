@@ -6,25 +6,27 @@ import classes from './NavigationItems.module.css';
 const navigationItems = (props) => {
     return(
     <div className={classes.NavigationItems}>
-        <ul className={classes.NavigationItems}>
-            <li>
+        <ul >
+          
                 <NavLink to={{
                 pathname: '/mainpage/WorkForce'
                 }} activeStyle={{
-                    color: '#fa923f'}}><span className={classes.main}>W</span> <span className={classes.extra}>WorkForce</span></NavLink>  </li> 
-            <li>
+                    color: '#fa923f'}}>
+                    <li><span className={classes.main}>W</span> <span className={classes.extra}>WorkForce</span></li></NavLink>  
+            
                  <NavLink to={{
                     pathname: '/mainPage/Payroll'
                     }}
                     activeStyle={{
                         color: '#fa923f'}} >
-                    <span className={classes.main}>P</span> <span className={classes.extra}>Payroll</span>  
-                 </NavLink>                                                                             </li>    
-            <li>
+                    <li><span className={classes.main}>P</span> <span className={classes.extra}>Payroll</span></li>  
+                 </NavLink>                                                                             
+            
                 <NavLink to={{
                 pathname: '/mainpage/2'
             }} activeStyle={{
-                color: '#fa923f'}}><span className={classes.main}>2</span> <span className={classes.extra}>Dummy2</span></NavLink>  </li>
+                color: '#fa923f'}}>
+                    <li><span className={classes.main}>2</span> <span className={classes.extra}>Dummy2</span></li></NavLink>  
         </ul>
     </div>);
 

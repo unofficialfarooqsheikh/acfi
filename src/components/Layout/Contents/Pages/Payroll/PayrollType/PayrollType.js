@@ -12,7 +12,7 @@ const PayrollType = () => {
         console.log(e[0].name);
         setTimeout(() => {
             setUploaded(true);
-        }, 6000);
+        }, 2000);
         setUploadedFileName(e[0].name);
     }
     console.log(uploaded,uploadedFileName)
