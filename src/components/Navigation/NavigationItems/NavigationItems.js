@@ -27,6 +27,12 @@ const navigationItems = (props) => {
             }} activeStyle={{
                 color: '#fa923f'}}>
                     <li><span className={classes.main}>2</span> <span className={classes.extra}>Dummy2</span></li></NavLink>  
+                 <NavLink to={{
+                pathname: '/mainpage/Migrator'
+                }} activeStyle={{
+                    color: '#fa923f'}}>
+                    <li><span className={classes.main}>M</span> <span className={classes.extra}>Migrator</span></li></NavLink>  
+            
         </ul>
     </div>);
 

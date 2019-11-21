@@ -8,6 +8,7 @@ import ContentsContainer from '../../UI/ContentsContainer/ContentsContainer';
 import Welcome from '../Contents/Pages/Welcome/Welcome';
 import Payroll from '../Contents/Pages/Payroll/Payroll';
 import WorkForce from '../Contents/Pages/WorkForce/WorkForce';
+import Migrator from '../Contents/Pages/Migrator/Migrator';
 
 
 const MainPageLayout =( props ) => {
@@ -31,6 +32,7 @@ const MainPageLayout =( props ) => {
             <Route path="/mainPage/Payroll" component={Payroll}/>
             <Route path="/mainPage" exact component={Welcome}/>
             <Route path="/mainPage/WorkForce" exact component={WorkForce}/>
+            <Route path="/mainPage/Migrator" exact component={Migrator}/>
             </ContentsContainer>
         </div>
     </Wrap>);   
