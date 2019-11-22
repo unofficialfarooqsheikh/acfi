@@ -16,7 +16,6 @@ const PayrollType = () => {
         setUploadedFileName(e[0].name);
     }
     console.log(uploaded,uploadedFileName)
-    let buttonType = "primary";
     
     return (
         

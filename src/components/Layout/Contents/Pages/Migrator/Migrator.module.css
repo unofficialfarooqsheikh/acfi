@@ -1,0 +1,59 @@
+.Dropzone
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fileDropArea {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 450px;
+    max-width: 100%;
+    padding: 25px;
+    border: 1px dashed black;
+    border-radius: 3px;
+    transition: 0.2s;
+    &.is-active {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  .dropBtn {
+    flex-shrink: 0;
+    background-color: #139BFF;
+    color:white;
+    border: 1px solid rgb(4, 47, 78);
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .fileInput :hover{
+    background-color: rgb(108, 166, 207);
+  }
+  
+  .fileMsg {
+    font-size: small;
+    font-weight: 300;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .fileInput {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0;
+    &:focus {
+      outline: none;
+    }
+  }
+  

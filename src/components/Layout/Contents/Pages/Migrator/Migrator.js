@@ -1,6 +1,12 @@
-import React from 'react'
+import React , {Component} from 'react';
+import SheetParser from './SheetParser';
+class Migrator extends Component {
+   
+    render(){
 
-const Migrator = () =>{
-    return(<h1>Hai Bro!</h1>);
+            return (
+              <SheetParser/>
+            )
+    }
 }
 export default Migrator;

@@ -3,7 +3,7 @@
     margin-top: 56px;
     height: calc(100vh - 56px);
     width: calc(100% - 15vw);
-    overflow: scroll;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
 @media (max-width: 600px) {
