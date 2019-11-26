@@ -15,14 +15,10 @@ const MainPageLayout =( props ) => {
     const [sidenav,setSidenav] = useState(false);
     const sidenavHandler =() => {
         setSidenav(!sidenav);
-        console.log(sidenav);
     } 
     let width =(sidenav) ? { width:'20vw'}:{ width:'0' }
     let margin =(sidenav) ? { marginLeft:'20vw',width: 'calc(100% - 20vw)'}:{ marginLeft:'0', width: '100%' }
     let marginLeft =(sidenav) ? { marginLeft:'17%'}: null;
-    console.log(width,margin)  
-
-
     return(<Wrap>
         <div>
             { sidenav ? <SideDrawer width={width}/> : null }

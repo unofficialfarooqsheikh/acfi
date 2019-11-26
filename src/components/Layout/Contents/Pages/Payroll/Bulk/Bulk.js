@@ -6,10 +6,12 @@ import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
 import ExpandedEmployeeDetails from './bulkEmployeeTable/ExpandedEmployeeDetails';
+import Skeleton from 'react-loading-skeleton';
 
 class Bulk extends Component{
     state = {
         employeeDetails: [],
+        loading: true,
         error: false,
         selectAll: false,
         searchTerm: '',
@@ -34,7 +36,8 @@ class Bulk extends Component{
                 }});
                 //set the state using the data stored in the a constant
                 this.setState ({
-                    employeeDetails: UpdatedEmployeeDetails
+                    employeeDetails: UpdatedEmployeeDetails,
+                    loading: false
                 })
             });
             // .catch(error => {
@@ -153,9 +156,11 @@ render(){
                     employeeName={this.state.individualEmployeeData.employee_name} 
                         />);
        }
-        
-            
-    return(
+
+        let employeesWithLoading = (this.state.loading === true) ? null : Employees;
+        let Skeletons = (this.state.loading === true) ? <Skeleton  count={18} height={25} width={'99vw'}/>: null;
+    
+        return(
 
         <div>
             
@@ -186,9 +191,10 @@ render(){
                     </thead>
                    
 
-                    {Employees }
+                    {employeesWithLoading }
             </Table>
             {ExpandedEmployee}
+            {Skeletons}
         </div>
         );
 

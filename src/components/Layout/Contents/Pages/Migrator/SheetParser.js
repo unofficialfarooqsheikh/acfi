@@ -1,20 +1,23 @@
 import React , {Component} from 'react';
 import XLSX from 'xlsx';
-
+import classes from './Migrator.module.css';
 class SheetParser extends Component {
     constructor(props) {
 		super(props);
 		this.state = {
+            filePresent: false,
 			data: [], /* Array of Arrays e.g. [["a","b"],[1,2]] */
             cols: [],  /* Array of column objects e.g. { name: "C", K: 2 } */
             dataBreakUp: [],
-            colsBreakUp: []
+            colsBreakUp: [],
+            colsB: []
 		};
 		this.handleFile = this.handleFile.bind(this);
 		// this.exportFile = this.exportFile.bind(this);
 	};
 	handleFile(file/*:File*/) {
-		/* Boilerplate to set up FileReader */
+        /* Boilerplate to set up FileReader */
+        this.setState({filePresent: true});
 		const reader = new FileReader();
         // console.log(reader);
         const rABS = !!reader.readAsBinaryString;
@@ -26,41 +29,27 @@ class SheetParser extends Component {
 			/* Get first worksheet */
 			const wsname = wb.SheetNames[0];
             const ws = wb.Sheets[wsname];
-            console.log(ws,"Worksheet")
+            // console.log(ws,"Worksheet")
 			/* Convert array of arrays */
             const data = XLSX.utils.sheet_to_json(ws, {header:1});
-            console.log(data);
+            // console.log(data);
 			/* Update state */
             this.setState({ data: data, cols: make_cols(ws['!ref']) });
             //Doing the alterations 
-            var datalen = data.length;
             const alterData ={
                 ...data
             }
             // const data1= alterData.map((a,i,j) =>{
             //     console.log(a,i,j)
             // })
-            console.log(alterData,datalen);
+            // console.log(alterData,datalen);
             var i;
-            this.setState({colsBreakUp: [
-                ...this.state.cols,
-                {
-                    name: "D", 
-                    key: 3} ,
-                {name: "E", key: 3} ,
-                {name: "F", key: 3} ,
-                {name: "G", key: 3} ,
-                {name: "H", key: 3} ,
-                {name: "I", key: 3} ,
-                {name: "J", key: 3} ,
-                {name: "K", key: 3} ,
-               
-            ]})
             for(i=0; i<data.length ; i++){        
-                console.log("hey",alterData);
-                if(i==0){
+                // console.log("hey",alterData);
+                if(i === 0){
+                    var ColData=[];
                     var Data=[];
-                    Data[0] = [
+                    ColData = [
                     ...alterData[0],
                     "Basic(40% on Gross)",
                     "HRA(25% on Gross)",
@@ -79,7 +68,7 @@ class SheetParser extends Component {
                 var HRA = ((alterData[i][2])*(25/100));
                 var MedicalAllowance = 15000/12;
                 var TravelAllowance = 19200/12;
-                var LTA = null;
+                var LTA = "NA";
                 var PFEmployerContribution;
                         if(basic > 15000){
                             PFEmployerContribution = 3600;
@@ -87,11 +76,11 @@ class SheetParser extends Component {
                         else{
                             PFEmployerContribution = ((basic)*(24/100));
                         }
-                        var specialAllowance = (alterData[i][2])-(basic+HRA+MedicalAllowance+TravelAllowance+LTA+PFEmployerContribution);
+                        var specialAllowance = (alterData[i][2])-(basic+HRA+MedicalAllowance+TravelAllowance+PFEmployerContribution);
                         var ActualCtc = alterData[i][2];
-                        var Bonus =null;
-                        var TotalCtc = null;
-                            Data[i] = [
+                        var Bonus = "NA";
+                        var TotalCtc = "NA";
+                           Data[i-1] = [
                                 ...alterData[i],
                                 basic,
                                 HRA,
@@ -105,17 +94,23 @@ class SheetParser extends Component {
                                 TotalCtc
                             ] 
                 }
-                const UpdateData ={
+                const UpdateData =[
                     ...Data
-                }
+                ];
                     this.setState({
-                        dataBreakUp: UpdateData
+                        dataBreakUp: UpdateData,
+                        colsBreakUp: ColData
                     })  
-                console.log(this.state.dataBreakUp,this.state.colsBreakUp);
-                
                     }
+            var columns=[]; this.state.colsBreakUp.forEach((element,i) => {
+                columns[i]= {name: element, key: i};
+            });
+            this.setState({colsBreakUp: columns})
+            this.state.colsBreakUp.forEach(element => {
+                // console.log(element.key);
+            });
+            // console.log(this.state.cols,this.state.dataBreakUp)
         };
-        
 		if(rABS) reader.readAsBinaryString(file); else reader.readAsArrayBuffer(file);
 	};
 	// exportFile() {
@@ -126,19 +121,30 @@ class SheetParser extends Component {
 	// 	/* generate XLSX file and send to client */
 	// 	XLSX.writeFile(wb, "sheetjs.xlsx")
 	// };
-	render() { return (
-    <DragDropFile handleFile={this.handleFile}>
-        <div ><div>
+    render()
+     { 
+        var RenderTable = null;
+        if(this.state.filePresent)
+        {
+            RenderTable =<OutTable data={this.state.dataBreakUp} cols={this.state.colsBreakUp} />;
+        } 
+        return (
+    <DragDropFile handleFile={this.handleFile} >
+        <div className={classes.Dropzone}><div className={classes.fileDropArea}>
             <DataInput handleFile={this.handleFile} />
-        </div></div>
-        {/* <div ><div >
-            <button disabled={!this.state.data.length} className="btn btn-secondary" onClick={this.exportFile}>Export</button>
-        </div></div> */}
-        <div> </div >
-        <div style={{display:'flex',flexWrap: 'wrap'}}> 
-            <OutTable data={this.state.data} cols={this.state.cols} />
-            {/* <OutTable data={this.state.dataBreakUp} cols={this.state.colsBreakUp} /> */}
+        </div ></div>
+        <div>  </div >
+        <div> 
+            {/* <OutTable data={this.state.data} cols={this.state.cols} /> 
+                // this is for seeing the input excel data
+            */}
+            {RenderTable}
         </div >
+        <div ><div >
+            {/* <button disabled={
+                (this.state.dataBreakUp === undefined || !this.state.dataBreakup.length)
+            } className="btn btn-secondary" onClick={this.exportFile}>Export</button> */}
+        </div></div>
         <div></div>
     </DragDropFile>
 ); };
@@ -175,7 +181,7 @@ class DragDropFile extends React.Component {
   usage: <DataInput handleFile={callback} />
     handleFile(file:File):void;
 */
-class DataInput extends React.Component {
+class DataInput extends Component{
 	constructor(props) {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
@@ -187,8 +193,8 @@ class DataInput extends React.Component {
 	render() { return (
 
 	<div >
-		<label htmlFor="file">Spreadsheet</label>
-		<input type="file"  id="file" accept={SheetJSFT} onChange={this.handleChange} />
+		<label htmlFor="file" className={classes.fileMsg}>Drag 'n' drop or choose an excel file</label>
+		<input type="file"  id="file" className={classes.dropBtn} accept={SheetJSFT} onChange={this.handleChange} />
 	</div>
 
 	); };
@@ -200,44 +206,36 @@ class DataInput extends React.Component {
     data:Array<Array<any> >;
     cols:Array<{name:string, key:number|string}>;
 */
-class OutTable extends React.Component {
-	constructor(props) { super(props); };
+class OutTable extends Component {
 	render() {
-        
+       
         return (
     <div style={{margin:'10px'}}>
 	<table className="table table-striped">
 		<thead>
-			<tr>{this.props.cols.map((c) => <th key={c.key}>{c.name}</th>)}</tr>
+            <tr key='0'>{this.props.cols.map((c) => {
+                            if(c.key === undefined ) {return null}
+                            else{return (<th key={c.key} >{c.name}</th>)}
+                        })
+                        }</tr>
 		</thead>
 		<tbody>
-			{this.props.data.map((r,i) => <tr key={i}>
-				{this.props.cols.map(c => <td key={c.key}>{ r[c.key] }</td>)}
-			</tr>)}
+			{this.props.data.map((r,i) => 
+            <tr key={i.toString()}>
+                {this.props.cols.map(c =>{ 
+                    
+                    
+                    if(c.key === undefined ) {return null}
+                    else{return(<td key={[i,c.key].join("")}>{ r[c.key] }</td>)}
+                    } )}
+            </tr>
+            )}
 		</tbody>
 	</table>
 </div>
 	); };
 };
-class OutTableBreakUp extends React.Component {
-	constructor(props) { super(props); };
-	render() {
-        
-        return (
-    <div style={{margin:'10px'}}>
-	<table className="table table-striped">
-		<thead>
-			<tr>{this.props.cols.map((c) => <th key={c.key}>{c.name}</th>)}</tr>
-		</thead>
-		<tbody>
-			{this.props.data.map((r,i) => <tr key={i}>
-				{this.props.cols.map(c => <td key={c.key}>{ r[c.key] }</td>)}
-			</tr>)}
-		</tbody>
-	</table>
-</div>
-	); };
-};
+
 
 
 /* list of supported file types */

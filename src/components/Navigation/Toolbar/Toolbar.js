@@ -13,8 +13,7 @@ const Toolbar = ( props ) => {
             bar2=[classes.bar2]
             bar3=[classes.bar3]
         }
-    let c1 = [classes.Toolbar, classes.leftToolbar];
-    let c2 = [classes.Toolbar, classes.rightToolbar];
+        let c1 = [classes.Toolbar, classes.rightToolbar];
     return(<div className={classes.Toolbar}>
     
         <div className={classes.container} onClick={props.sidenavHandler} >
@@ -22,7 +21,7 @@ const Toolbar = ( props ) => {
         <div className={bar2.join(' ')}></div>
         <div className={bar3.join(' ')}></div>
         </div>
-        <header className={c2.join(' ')} >
+        <header className={c1.join(' ')} >
            <h3>AcFi</h3>
         </header>
     </div>)

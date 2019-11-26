@@ -91,3 +91,10 @@ button{
     left: 32px;
   }
   
+  table{
+      background-color: #54bec826;
+      border: black;
+  }
+  thead{
+    background-color: #009bff69;
+  }
