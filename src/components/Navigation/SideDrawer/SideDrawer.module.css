@@ -6,12 +6,15 @@
     display: flex;
     flex-flow: column;
     align-items: flex-start;
-    padding-top: 20vh;
+    padding-top: 15vh;
     box-sizing: border-box;
     border-right: 2px solid #f1f1f1;
     float: left;
+    box-shadow: 1px 2px 7px 0px;
 }
-
+li{
+    height: 50px;
+}
 /* 
 
 */
@@ -23,7 +26,9 @@
     li{
         height: 100px;
         padding-top:25px;
-        
+    }
+    .SideDrawer {
+        padding-top: 6vh;
     }
 
 }

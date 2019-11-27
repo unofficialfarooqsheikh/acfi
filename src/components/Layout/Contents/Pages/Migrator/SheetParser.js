@@ -1,10 +1,12 @@
 import React , {Component} from 'react';
 import XLSX from 'xlsx';
+import xlthumb from '../../../../../assets/excelThumb.png';
 import classes from './Migrator.module.css';
 class SheetParser extends Component {
     constructor(props) {
 		super(props);
 		this.state = {
+            tableKey: Date.now(),
             filePresent: false,
 			data: [], /* Array of Arrays e.g. [["a","b"],[1,2]] */
             cols: [],  /* Array of column objects e.g. { name: "C", K: 2 } */
@@ -68,9 +70,9 @@ class SheetParser extends Component {
                 var HRA = ((alterData[i][2])*(25/100));
                 var MedicalAllowance = 15000/12;
                 var TravelAllowance = 19200/12;
-                var LTA = "NA";
+                var LTA = null;
                 var PFEmployerContribution;
-                        if(basic > 15000){
+                        if(basic >= 15000){
                             PFEmployerContribution = 3600;
                         }
                         else{
@@ -78,8 +80,8 @@ class SheetParser extends Component {
                         }
                         var specialAllowance = (alterData[i][2])-(basic+HRA+MedicalAllowance+TravelAllowance+PFEmployerContribution);
                         var ActualCtc = alterData[i][2];
-                        var Bonus = "NA";
-                        var TotalCtc = "NA";
+                        var Bonus = null;
+                        var TotalCtc = basic + HRA + MedicalAllowance + TravelAllowance +PFEmployerContribution + specialAllowance ;
                            Data[i-1] = [
                                 ...alterData[i],
                                 basic,
@@ -120,18 +122,24 @@ class SheetParser extends Component {
 	// 	XLSX.utils.book_append_sheet(wb, ws, "SheetJS");
 	// 	/* generate XLSX file and send to client */
 	// 	XLSX.writeFile(wb, "sheetjs.xlsx")
-	// };
+    // };
+    fileClearHandler = () =>{
+        this.setState({tableKey: Date.now(), filePresent:false})
+    }
     render()
      { 
         var RenderTable = null;
+        var excelInputThumb = null;
         if(this.state.filePresent)
         {
-            RenderTable =<OutTable data={this.state.dataBreakUp} cols={this.state.colsBreakUp} />;
+            RenderTable =<OutTable data={this.state.dataBreakUp} cols={this.state.colsBreakUp}  />;
+            excelInputThumb = <div className={classes.excelthumbContainer}><img src={xlthumb} alt='ExcelfileLogo' className={classes.excelThumb} onClick={this.fileClearHandler}/></div>;
         } 
         return (
     <DragDropFile handleFile={this.handleFile} >
         <div className={classes.Dropzone}><div className={classes.fileDropArea}>
-            <DataInput handleFile={this.handleFile} />
+            <DataInput handleFile={this.handleFile} keys={this.state.tableKey}/>
+            {excelInputThumb}
         </div ></div>
         <div>  </div >
         <div> 
@@ -194,7 +202,7 @@ class DataInput extends Component{
 
 	<div >
 		<label htmlFor="file" className={classes.fileMsg}>Drag 'n' drop or choose an excel file</label>
-		<input type="file"  id="file" className={classes.dropBtn} accept={SheetJSFT} onChange={this.handleChange} />
+		<input type="file"  id="file" className={classes.dropBtn} accept={SheetJSFT} onChange={this.handleChange} key={this.props.keys}/>
 	</div>
 
 	); };

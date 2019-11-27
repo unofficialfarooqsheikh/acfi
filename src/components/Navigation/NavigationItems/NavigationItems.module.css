@@ -56,8 +56,16 @@
     text-decoration: none;
     color: #007bff;
 }
-.NavigationItems > ul > a.active > li{
-background-color: red;
+.active li:nth-child(1){
+    background-color: red;
+}
+
+a> li{
+    background-color: #139BFF;
+   
+}
+a > li >span{
+    color: white;
 }
 @media (max-width: 600px) {
     .NavigationItems li{

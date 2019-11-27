@@ -1,9 +1,6 @@
 import React,{useState} from 'react';
 import Button from 'react-bootstrap/Button';
-// import Table from 'react-bootstrap/Table';
 import classes from './BulkEmployee.module.css'
-import Form from 'react-bootstrap/Form';
-// import FormCheck from 'react-bootstrap/FormCheck';
 import InputSwitch from '../../../../../../UI/Input/InputSwitch'
 
 
@@ -27,8 +24,19 @@ const BasicInput = (props) =>{
 
 }
 const ExpandedEmployeeDetails = (props) =>{
+
     const [edit, setEdit] = useState(true);
-    console.log({edit})
+    console.log({edit});
+
+    const EditButton = edit?(<Button variant="primary" onClick={() =>{setEdit(!edit);
+                        console.log({edit});
+                        }}>Edit</Button>): null; 
+
+    const SaveCancelButton = edit ? null :(
+        <div>
+            <Button variant="primary" onClick={() =>{setEdit(!edit);}}>Cancel</Button>
+            <Button variant="primary" onClick={() =>{setEdit(!edit);}}>Saved</Button>
+        </div>);
     return(
       
        <div >
@@ -43,9 +51,8 @@ const ExpandedEmployeeDetails = (props) =>{
                         <BasicInput label='Designation' disabled={edit} value='Analyst'/> 
                         <BasicInput label='Payable Days' disabled={edit} value={5}/> 
                     </div>
-                    <Button variant="primary" onClick={() =>{setEdit(!edit);
-                            console.log({edit});
-                        }}>Edit</Button>
+                    {EditButton}
+                    {SaveCancelButton}
             </div>
 
             <div className={classes.Employee}>
@@ -107,8 +114,8 @@ const ExpandedEmployeeDetails = (props) =>{
                             </thead>
                         </table>
                     </div>
-                    
             </div>
+         
        </div>
      
     );
