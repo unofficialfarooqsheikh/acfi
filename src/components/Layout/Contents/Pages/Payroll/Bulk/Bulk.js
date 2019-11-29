@@ -21,12 +21,12 @@ class Bulk extends Component{
     }
     componentDidMount(){
         //here the data from dummy API and storing in the data by splicing it from API
-        axios.get('http://dummy.restapiexample.com/api/v1/employees')
+        axios.get('http://localhost:8080/data')
             .then(response =>{
                 // console.log(response);
                 //slice data
-                const data = response.data.slice(0,35);
-                // console.log(data);
+                const data = response.data;
+                console.log(data);
                 //making data be duplicted in a variable which can be stored in the state
                 const UpdatedEmployeeDetails = data.map(alldata =>{
                         
