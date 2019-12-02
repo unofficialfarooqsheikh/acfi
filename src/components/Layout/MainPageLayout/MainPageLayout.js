@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Route,} from 'react-router-dom';
+import {Route,Link} from 'react-router-dom';
 import Wrap from '../../../Hoc/Wrap';
 import Toolbar from '../../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../Navigation/SideDrawer/SideDrawer';
@@ -9,6 +9,8 @@ import Welcome from '../Contents/Pages/Welcome/Welcome';
 import Payroll from '../Contents/Pages/Payroll/Payroll';
 import WorkForce from '../Contents/Pages/WorkForce/WorkForce';
 import Migrator from '../Contents/Pages/Migrator/Migrator';
+import Logs from '../Contents/Pages/Logs/Logs';
+import DataProvider from '../Contents/Pages/Logs/DataProvider/DataProvider'
 
 
 const MainPageLayout =( props ) => {
@@ -29,7 +31,13 @@ const MainPageLayout =( props ) => {
             <Route path="/mainPage" exact component={Welcome}/>
             <Route path="/mainPage/WorkForce" exact component={WorkForce}/>
             <Route path="/mainPage/Migrator" exact component={Migrator}/>
+            <Route path="/mainPage/Logs" exact component={Logs}/>
+            <Route path='/mainPage/Logs/PayrollRows' exact component={DataProvider}/>
+            <Route path='/mainPage/Logs/PF' exact component={DataProvider}/>
+            <Route path='/mainPage/Logs/BankUploads' exact component={DataProvider}/>
+            <Route path='/mainPage/Logs/TDS' exact component={DataProvider}/>
             </ContentsContainer>
+
         </div>
     </Wrap>);   
 }

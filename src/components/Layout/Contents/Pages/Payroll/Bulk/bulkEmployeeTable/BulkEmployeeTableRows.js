@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from '../Bulk.module.css';
+import InputSwitch from '../../../../../../UI/Input/InputSwitch';
 
 const BulkEmployeeTableRows =(props) => {
    
@@ -16,12 +17,13 @@ const BulkEmployeeTableRows =(props) => {
                         
                         <td >
                                 
-                                <input type='checkbox' 
+                                {/* <input type='checkbox' 
                                 id={props.id}
                                 onChange={props.change} 
                                 checked={props.checkedState}  
                                 />
-                                    <label htmlFor={props.id}>Select</label>
+                                    <label htmlFor={props.id}>Select</label> */}
+                            <InputSwitch id={props.id} change={props.change} checkedState={props.checkedState}/>
                             </td>  
                 </tr>
             

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-
+import axios from 'axios';
 
 
 class Welcome extends Component {
@@ -10,6 +10,23 @@ class Welcome extends Component {
     
     componentDidMount() {
       this.timerId = setInterval(() => this.tick(), (1000*30));
+      var session_url = 'http://127.0.0.1:9010/';
+      var username = 'Farooq';
+      var password = 'password';
+
+      axios.post(session_url, {
+      },{
+        auth: {
+          username: username,
+          password: password
+      }}).then(function(response) {
+        console.log('Authenticated',response);
+      }).catch(function(error) {
+        console.log('Error on Authentication');
+      });
+    
+
+      // axios.get('http://127.0.0.1:9010/',{username:'Farooq'},{password:'password'})
     }
   
     componentWillUnmount() {

@@ -1,12 +1,18 @@
 import React from 'react';
-import classes from './Input.module.css';
 
 
-const InputSwitch=() => {
-
-   return(<div >
-    <input className={classes.switch} type='checkbox' defaultChecked/>
-    <label>Arrears</label>
+const InputSwitch = (props) => {
+    
+    console.log(props);
+    console.log('sjdafgsgladfglsadfbi');
+   return(
+   <div >
+    <input type='checkbox' 
+                                id={props.id}
+                                onChange={props.change} 
+                                checked={props.checkedState}  
+                                />
+    <label htmlFor={props.id}>{""+props.checkedState}</label>
     </div>);
 }
 export default InputSwitch;

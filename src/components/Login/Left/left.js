@@ -1,7 +1,6 @@
 import React from 'react';
 // import classes from '../login.module.css';
 import Wrap from '../../../Hoc/Wrap';
-import Logo from '../../UI/logo';
 import InputPassword from '../../UI/Input/InputPassword';
 import InputUserName from '../../UI/Input/InputUserName';
 import Button from 'react-bootstrap/Button';
@@ -12,7 +11,6 @@ const left = (props) => {
      // console.log("Left.js"+props);
      return(
      <Wrap className={props.classes.left}>
-               <Logo />
                <h1 ><span>A</span>c<span>F</span>i</h1>
                <p >{ex}</p>
      

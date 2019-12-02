@@ -9,12 +9,12 @@ const navigationItems = (props) => {
         <ul >
           
                 <NavLink to={{
-                pathname: '/mainpage'
+                pathname: '/mainPage'
                 }} activeClassName="active">
                     <li><span className={classes.main}>H</span> <span className={classes.extra}>Home Page</span></li></NavLink>  
             
                 <NavLink to={{
-                pathname: '/mainpage/WorkForce'
+                pathname: '/mainPage/WorkForce'
                 }} activeClassName="active">
                     <li><span className={classes.main}>W</span> <span className={classes.extra}>WorkForce</span></li></NavLink>  
             
@@ -25,15 +25,20 @@ const navigationItems = (props) => {
                     <li><span className={classes.main}>P</span> <span className={classes.extra}>Payroll</span></li>  
                  </NavLink>                                                                             
             
-                <NavLink to={{
-                pathname: '/mainpage/2'
+                {/* <NavLink to={{
+                pathname: '/mainPage/2'
             }} activeClassName="active">
-                    <li><span className={classes.main}>2</span> <span className={classes.extra}>Dummy2</span></li></NavLink>  
+                    <li><span className={classes.main}>2</span> <span className={classes.extra}>Dummy2</span></li></NavLink>   */}
                  <NavLink to={{
-                pathname: '/mainpage/Migrator'
+                pathname: '/mainPage/Migrator'
                 }} activeStyle={{
                     color: '#fa923f'}}>
                     <li><span className={classes.main}>M</span> <span className={classes.extra}>Migrator</span></li></NavLink>  
+                 <NavLink to={{
+                pathname: '/mainPage/Logs'
+                }} activeStyle={{
+                    color: '#fa923f'}}>
+                    <li><span className={classes.main}>L</span> <span className={classes.extra}>Logs</span></li></NavLink>  
             
         </ul>
     </div>);

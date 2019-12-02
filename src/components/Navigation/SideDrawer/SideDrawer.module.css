@@ -1,12 +1,11 @@
 .SideDrawer {
     
     position: relative;
-    
     height: 100vh;
     display: flex;
     flex-flow: column;
     align-items: flex-start;
-    padding-top: 15vh;
+    padding-top: 25vh;
     box-sizing: border-box;
     border-right: 2px solid #f1f1f1;
     float: left;
@@ -29,6 +28,7 @@ li{
     }
     .SideDrawer {
         padding-top: 6vh;
+        height: initial;
     }
 
 }
