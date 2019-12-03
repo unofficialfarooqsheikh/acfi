@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrawer.module.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
@@ -9,6 +10,7 @@ const sideDrawer = ( props ) => {
     // if (props.open) {
     //     attachedClasses = [classes.SideDrawer, classes.Open];
     // }
+    // console.log(props)
     return (
         <Wrap >
             <Backdrop 
@@ -23,4 +25,4 @@ const sideDrawer = ( props ) => {
     );
 };
 
-export default sideDrawer;
+export default withRouter(sideDrawer);

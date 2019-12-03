@@ -1,29 +1,28 @@
 .DataProvider{
     display: flex; 
     flex-direction: column;
-    border: solid 0.5px blue;
     height: 90vh;
 }
 .Child1{
-    /* border: solid 0.5px red; */
-    margin: auto;
-    flex-basis: 50%;
+    vertical-align: center;
+    /* margin-top: 20px; */
+    margin: 10vh auto auto auto;
+    flex-basis: 70%;
     flex:1;
 }
 .Child2{
-    /* border: solid 0.5px yellow; */
+    
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-content: space-between;
     flex: 3;
+    width: 30%;
 }
-.Child2Child{
-    /* border: solid 0.5px black; */
-    flex-basis: 50%;
+.Child2Child1{
     display: flex;
-    align-items: center;
+    flex-wrap: wrap; 
+    justify-content: space-between;
 }
-.Child2Child > a {
+.Child2Child2{
     
 }

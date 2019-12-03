@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Route,Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Wrap from '../../../Hoc/Wrap';
 import Toolbar from '../../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../Navigation/SideDrawer/SideDrawer';
@@ -10,10 +10,11 @@ import Payroll from '../Contents/Pages/Payroll/Payroll';
 import WorkForce from '../Contents/Pages/WorkForce/WorkForce';
 import Migrator from '../Contents/Pages/Migrator/Migrator';
 import Logs from '../Contents/Pages/Logs/Logs';
-import DataProvider from '../Contents/Pages/Logs/DataProvider/DataProvider'
+
 
 
 const MainPageLayout =( props ) => {
+    // console.log(props)
     const [sidenav,setSidenav] = useState(false);
     const sidenavHandler =() => {
         setSidenav(!sidenav);
@@ -27,15 +28,11 @@ const MainPageLayout =( props ) => {
             <Toolbar sidenavHandler={sidenavHandler} marginLeft={marginLeft} sidenavOpen={sidenav}/> 
             <Backdrop />
             <ContentsContainer margin={margin}>
-            <Route path="/mainPage/Payroll" component={Payroll}/>
-            <Route path="/mainPage" exact component={Welcome}/>
-            <Route path="/mainPage/WorkForce" exact component={WorkForce}/>
-            <Route path="/mainPage/Migrator" exact component={Migrator}/>
-            <Route path="/mainPage/Logs" exact component={Logs}/>
-            <Route path='/mainPage/Logs/PayrollRows' exact component={DataProvider}/>
-            <Route path='/mainPage/Logs/PF' exact component={DataProvider}/>
-            <Route path='/mainPage/Logs/BankUploads' exact component={DataProvider}/>
-            <Route path='/mainPage/Logs/TDS' exact component={DataProvider}/>
+            <Route path={props.match.url+'/Payroll'} component={Payroll}/>
+            <Route path={props.match.url} exact component={Welcome}/>
+            <Route path={props.match.url+'/WorkForce'} exact component={WorkForce}/>
+            <Route path={props.match.url+'/Migrator'} exact component={Migrator}/>
+            <Route path={props.match.url+'/Logs'} component={Logs}/>
             </ContentsContainer>
 
         </div>

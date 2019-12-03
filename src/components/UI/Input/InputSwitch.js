@@ -2,9 +2,7 @@ import React from 'react';
 
 
 const InputSwitch = (props) => {
-    
-    console.log(props);
-    console.log('sjdafgsgladfglsadfbi');
+
    return(
    <div >
     <input type='checkbox' 
