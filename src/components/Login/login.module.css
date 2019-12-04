@@ -1,41 +1,62 @@
 .Login {
-    background-image: url(../../assets/image.jpg);
-    background-size: 100% 100%;
+    
+    /* background-image: linear-gradient( 180.3deg,  rgba(221,221,221,1) 5.5%, rgba(110,136,161,1) 90.2% ); */
+    /* background-image: linear-gradient( 114.9deg, rgba(34,34,34,1) 8.3%, rgba(0,40,60,1) 41.6%, rgba(0,143,213,1) 93.4% ); */
     display: flex;
     align-items: center;
     justify-content: center;
     /* box-shadow: 0 2px 1px #ccc; */
-    height:100vh;
+    height: 100vh;
     width: 100vw;
     color: white;
 }
-
+.background1{
+background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);background-image: linear-gradient( 65.5deg,  rgba(23,205,205,1) -15.1%, rgba(23,25,95,1) 71.5% );
+}
+.background2{
+background-image: linear-gradient( 180.3deg,  rgba(221,221,221,1) 5.5%, rgba(110,136,161,1) 90.2% );
+}
+.background3{
+    background-image: radial-gradient( circle 638px at 64.2% 57.7%,  rgba(17,187,244,1) 62.6%, rgba(248,66,239,1) 90% );
+}
+.background4{
+    background-image: radial-gradient( circle farthest-corner at 84.6% 77.8%,  rgba(86,89,218,1) 0%, rgba(95,208,248,1) 90% );
+}
+.background5{
+    background-image: radial-gradient( circle 919px at 1.7% 6.1%,  rgba(41,58,76,1) 0%, rgba(40,171,226,1) 100.2% );
+}
+.background6{
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,93,133,1) 0%, rgba(0,181,149,1) 90% );
+}
+.background7{
+    background-image: radial-gradient( circle farthest-corner at 0.2% 0.3%,  rgba(3,144,232,1) 0%, rgba(2,97,156,1) 89.9% );
+}
 .left {
-    
+
     /* box-shadow: 0 2px 1px #2989d8; */
     background-color: transparent;
 }
 .field {
     text-align: left;
 }
-.left button{
+.left button {
     width: fit-content;
 }
-.left input{
-    
+.left input {
+    color: white !important;
 }
+
 /* .Img {
     /* max-width: -webkit-fill-available; */
-    /* width: 75vw;
+/* width: 75vw;
     height: 100vh; */
-    /* object-fit: none; */
+/* object-fit: none; */
 /* }  */
 @media (max-width: 700px) {
     .Login {
-        
-    }
-    .left{
-        
+        }
+    .left {
+
         background-color: transparent;
     }
 }

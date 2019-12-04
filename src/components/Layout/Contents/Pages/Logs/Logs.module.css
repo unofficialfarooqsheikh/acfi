@@ -1,6 +1,20 @@
+.Cards{
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(69,86,102,1) 0%, rgba(34,34,34,1) 90% );
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.582);
+    transition: 0.4s ease-out;
+    margin: 20px;
+    color: white;
+}
+
+.Cards:hover{
+    background-color: rgba(4, 21, 32, 0.082);
+    box-shadow: 0rem 1px 1rem 10px rgba(0, 0, 0, 0.83);
+}
 .container{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .flexContainer {
     display: flex;
@@ -42,3 +56,10 @@ div > a :hover{
      margin-left: 20% !important;
      margin-top: 3% !important;
 } */
+@media (max-width: 600px) {
+     
+    .Cards{
+        width:100%
+    }
+
+}

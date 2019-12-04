@@ -23,7 +23,7 @@ const BulkEmployeeTableRows =(props) => {
                                 checked={props.checkedState}  
                                 />
                                     <label htmlFor={props.id}>Select</label> */}
-                            <InputSwitch id={props.id} change={props.change} checkedState={props.checkedState}/>
+                            <InputSwitch id={props.id} change={props.change} checkedState={props.checkedState} label='Select'/>
                             </td>  
                 </tr>
             

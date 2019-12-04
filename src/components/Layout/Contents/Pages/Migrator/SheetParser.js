@@ -137,7 +137,7 @@ class SheetParser extends Component {
         } 
         return (
     <DragDropFile handleFile={this.handleFile} >
-        <div className={classes.Dropzone}><div className={classes.fileDropArea}>
+        <div className={classes.Dropzone} ><div className={classes.fileDropArea}>
             <DataInput handleFile={this.handleFile} keys={this.state.tableKey}/>
             {excelInputThumb}
         </div ></div>
@@ -219,7 +219,7 @@ class OutTable extends Component {
        
         return (
     <div style={{margin:'10px'}}>
-	<table className="table table-striped">
+	<table className=".table">
 		<thead>
             <tr key='0'>{this.props.cols.map((c) => {
                             if(c.key === undefined ) {return null}
