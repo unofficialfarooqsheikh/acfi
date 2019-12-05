@@ -13,10 +13,7 @@ const sideDrawer = ( props ) => {
     // console.log(props)
     return (
         <Wrap >
-            <Backdrop 
-            // show={props.open} clicked={props.closed}
-            />
-            <div className={classes.SideDrawer} style={props.width}>
+            <div className={classes.SideDrawer} style={props.Show}>
                 <nav>
                     <NavigationItems />
                 </nav>

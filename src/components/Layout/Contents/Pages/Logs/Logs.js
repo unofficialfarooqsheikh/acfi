@@ -25,7 +25,7 @@ render(){
            <div className={classes.container}>
                 
                 <div id='PayRollRows' className={classes.Cards}>    
-                    <div><DataProvider keys='Prov1' heading='PayrollRows' icon={PayrollIcon}/></div>
+                    <div><DataProvider keys='Prov1' heading='Pay Rolls' icon={PayrollIcon}/></div>
                     </div>
                 
                 <div id='PF' className={classes.Cards}>    

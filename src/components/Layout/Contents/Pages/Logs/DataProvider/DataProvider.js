@@ -99,7 +99,7 @@ class DataProvider extends Component {
                 <h5 style={{textAlign:'center',paddingTop:'15px'}}>{this.props.heading}</h5>
                 <img style={{margin:'auto'}} src={this.props.icon} alt={this.props.heading}/>
                 <div className={classes.Child1}>
-                <p style={{textAlign:'center'}}>Select Date </p>
+                <p style={{textAlign:'center'}}>Select Date <span style={{color:'#e85050fc'}}>&#129083;</span></p>
                     <input type='month' onChange={(e) => this.CalenderHandler(e)} value={this.state.date}/>
                 <br/>
                 </div>

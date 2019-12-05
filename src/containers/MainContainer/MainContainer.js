@@ -10,7 +10,8 @@ class MainContainer extends Component {
         // console.log("Maincontainer.js"+this.props);
         return (
 
-            <div >
+            <div style={{
+                    'fontFamily': "'Merriweather', serif !important'"}}>
                 <Route path={"/"} exact component={AcFiLogin}/>
                 <Route path="/mainPage"  component={MainPageLayout}/>
                 

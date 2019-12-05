@@ -70,7 +70,7 @@ class SheetParser extends Component {
                 var HRA = ((alterData[i][2])*(25/100));
                 var MedicalAllowance = 15000/12;
                 var TravelAllowance = 19200/12;
-                var LTA = null;
+                var LTA = 0;
                 var PFEmployerContribution;
                         if(basic >= 15000){
                             PFEmployerContribution = 3600;
@@ -80,7 +80,7 @@ class SheetParser extends Component {
                         }
                         var specialAllowance = (alterData[i][2])-(basic+HRA+MedicalAllowance+TravelAllowance+PFEmployerContribution);
                         var ActualCtc = alterData[i][2];
-                        var Bonus = null;
+                        var Bonus = 0;
                         var TotalCtc = basic + HRA + MedicalAllowance + TravelAllowance +PFEmployerContribution + specialAllowance ;
                            Data[i-1] = [
                                 ...alterData[i],

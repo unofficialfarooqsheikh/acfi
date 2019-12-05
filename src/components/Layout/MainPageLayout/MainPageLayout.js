@@ -19,17 +19,18 @@ const MainPageLayout =( props ) => {
     const sidenavHandler =() => {
         setSidenav(!sidenav);
     } 
-    let width =(sidenav) ? { width:'20vw'}:{ width:'0' }
-    let margin =(sidenav) ? { marginLeft:'20vw',width: 'calc(100% - 20vw)'}:{ marginLeft:'0', width: '100%' }
-    let marginLeft =(sidenav) ? { marginLeft:'17%'}: null;
+    // let width =(sidenav) ? { width:'18vw'}:{ width:'0' }
+    let ShowNavBar =(sidenav) ? {display:'inline'} :{display:'none'}
+    let margin =(sidenav) ? { marginLeft:'18vw',width: 'calc(100% - 18vw)'}:{ marginLeft:'0', width: '100%' }
+    // let marginLeft =(sidenav) ? { marginLeft:'17%'}: null;
     return(<Wrap>
         <div>
-            { sidenav ? <SideDrawer width={width}/> : null }
-            <Toolbar sidenavHandler={sidenavHandler} marginLeft={marginLeft} sidenavOpen={sidenav}/> 
-            <Backdrop />
-            <ContentsContainer margin={margin}>
+            <SideDrawer Show={ShowNavBar}/>
+            <Toolbar sidenavHandler={sidenavHandler}  sidenavOpen={sidenav}/> 
+            <ContentsContainer >
+            <Backdrop left={margin} show={sidenav} clicked ={sidenavHandler}/>
             <Route path={props.match.url+'/Payroll'} component={Payroll}/>
-            <Route path={props.match.url} exact component={Welcome}/>
+            <Route path={props.match.url+'/home'} exact component={Welcome}/>
             <Route path={props.match.url+'/WorkForce'} exact component={WorkForce}/>
             <Route path={props.match.url+'/Migrator'} exact component={Migrator}/>
             <Route path={props.match.url+'/Logs'} component={Logs}/>
