@@ -11,7 +11,7 @@ class MainContainer extends Component {
         return (
 
             <div >
-                <Route path="/" exact component={AcFiLogin}/>
+                <Route path={"/"} exact component={AcFiLogin}/>
                 <Route path="/mainPage"  component={MainPageLayout}/>
                 
             </div>
