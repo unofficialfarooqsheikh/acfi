@@ -42,20 +42,33 @@
   transform: rotate(45deg) translate(-8px, -8px);
 }
 
-.rightToolbar{
-    position: relative;
-    left: 30vw;
-    width: calc(100% - 15vw);     
+.ToolbarHeading{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .Toolbar nav {
     height: 100%;
 }
-
+.UserDetailscontainer{
+display: flex;
+flex-direction: column;
+}
+.UserDetailscontainer > p{
+  margin: 0 2px auto auto;
+}
+.AppName{
+  margin: 0;
+  align-self: center;
+    }
 @media (max-width: 600px) {
 .rightToolbar{
     margin: auto; 
 }
 .container{
     display: none;
+}
+.UserDetailscontainer{
+ display: none; 
 }
 }

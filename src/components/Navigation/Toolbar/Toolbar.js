@@ -15,14 +15,19 @@ const Toolbar = ( props ) => {
         }
     return(<div className={classes.Toolbar}>
     
+        <header className={classes.ToolbarHeading} >
         <div className={classes.container} onClick={props.sidenavHandler} >
         <div className={bar1.join(' ')}></div>
         <div className={bar2.join(' ')}></div>
         <div className={bar3.join(' ')}></div>
         </div>
-        <header className={classes.rightToolbar} >
-           <h3>AcFi</h3>
+           <h3 className={classes.AppName}>AcFi</h3>
+           <div className={classes.UserDetailscontainer}>
+               <p>Welcome: {'username'} </p>
+               <p>Welcome: {'username'} </p>
+           </div>
         </header>
+
     </div>)
 
 };

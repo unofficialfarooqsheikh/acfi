@@ -96,7 +96,7 @@ class AcFiBuilder extends Component {
                loginPage=null;
                 renderLink = (  
                         <Redirect to={{
-                            pathname: '/mainPage',
+                            pathname: '/mainPage/WorkForce',
                             state: { names: this.state.logedInUser}
                             //      
                             // }

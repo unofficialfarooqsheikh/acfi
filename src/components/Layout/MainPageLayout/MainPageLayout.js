@@ -10,6 +10,7 @@ import Payroll from '../Contents/Pages/Payroll/Payroll';
 import WorkForce from '../Contents/Pages/WorkForce/WorkForce';
 import Migrator from '../Contents/Pages/Migrator/Migrator';
 import Logs from '../Contents/Pages/Logs/Logs';
+import NotificationBar from '../../Navigation/NotificationBar/NotificationBar'
 
 
 
@@ -27,15 +28,14 @@ const MainPageLayout =( props ) => {
         <div>
             <SideDrawer Show={ShowNavBar}/>
             <Toolbar sidenavHandler={sidenavHandler}  sidenavOpen={sidenav}/> 
+            <NotificationBar/>
             <ContentsContainer >
             <Backdrop left={margin} show={sidenav} clicked ={sidenavHandler}/>
             <Route path={props.match.url+'/Payroll'} component={Payroll}/>
-            <Route path={props.match.url+'/home'} exact component={Welcome}/>
             <Route path={props.match.url+'/WorkForce'} exact component={WorkForce}/>
             <Route path={props.match.url+'/Migrator'} exact component={Migrator}/>
             <Route path={props.match.url+'/Logs'} component={Logs}/>
             </ContentsContainer>
-
         </div>
     </Wrap>);   
 }

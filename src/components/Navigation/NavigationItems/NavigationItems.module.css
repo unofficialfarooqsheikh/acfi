@@ -110,5 +110,15 @@ a > li >span{
     background-color: rgba(169, 169, 169, 0.287);
     border-radius: 5px;
 }
+
 } 
-   
+@media (min-height: 600px){
+    .NavigationItems ul {
+        height: 12vh;
+    }
+}
+@media (min-height: 800px){
+    .NavigationItems ul {
+        height: 10vh;
+    }
+}

@@ -8,7 +8,7 @@ const navigationItems = (props) => {
         <div className={classes.NavigationItems}>
             <ul >
 
-                <li>
+                {/* <li>
                     <NavLink
                         to={{
                         pathname: props.match.url + '/home'
@@ -19,7 +19,7 @@ const navigationItems = (props) => {
                         <span className={classes.main}><div className={classes.emojis}><span role="img" aria-label="Home" style={{fontSize:'25px'}}>🏠</span> <span style={{fontSize:'15px'}}>Home</span></div></span>
                         <span className={classes.extra}>Home Page</span>
                     </NavLink>
-                </li>
+                </li> */}
 
                 <li>
                     <NavLink

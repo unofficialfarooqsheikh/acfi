@@ -132,20 +132,30 @@ class SheetParser extends Component {
         var excelInputThumb = null;
         if(this.state.filePresent)
         {
-            RenderTable =<OutTable data={this.state.dataBreakUp} cols={this.state.colsBreakUp}  />;
+            RenderTable =(<div>
+                                <OutTable data={this.state.dataBreakUp} cols={this.state.colsBreakUp}  />
+                                <div className={classes.UploadButtonContainer}>
+                                    <div className={classes.UploadButtoninnerdiv} >
+                                        <a  className={classes.UploadButton}>
+                                            <span role="img" aria-label="Logs" style={{fontSize:'25px'}} >🡅 Upload</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>);
             excelInputThumb = <div className={classes.excelthumbContainer}><img src={xlthumb} alt='ExcelfileLogo' className={classes.excelThumb} onClick={this.fileClearHandler}/></div>;
         } 
         return (
-    <DragDropFile handleFile={this.handleFile} >
-        <div className={classes.Dropzone} ><div className={classes.fileDropArea}>
-            <DataInput handleFile={this.handleFile} keys={this.state.tableKey}/>
-            {excelInputThumb}
-        </div ></div>
-        <div>  </div >
-        <div> 
+        <DragDropFile handleFile={this.handleFile} >
+            <div className={classes.Dropzone} ><div className={classes.fileDropArea}>
+                <DataInput handleFile={this.handleFile} keys={this.state.tableKey}/>
+                {excelInputThumb}
+            </div ></div>
+            <div>  </div >
+            <div> 
             {/* <OutTable data={this.state.data} cols={this.state.cols} /> 
                 // this is for seeing the input excel data
             */}
+            
             {RenderTable}
         </div >
         <div ><div >
@@ -154,6 +164,9 @@ class SheetParser extends Component {
             } className="btn btn-secondary" onClick={this.exportFile}>Export</button> */}
         </div></div>
         <div></div>
+        <br/>
+        <br/>
+        <br/>
     </DragDropFile>
 ); };
 };
@@ -219,7 +232,7 @@ class OutTable extends Component {
        
         return (
     <div style={{margin:'10px'}}>
-	<table className=".table">
+	<table className={classes.table}>
 		<thead>
             <tr key='0'>{this.props.cols.map((c) => {
                             if(c.key === undefined ) {return null}
