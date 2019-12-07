@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Toolbar.module.css';
+import Image from '../../../assets/user.png';
 
 const Toolbar = ( props ) => {
     var bar1,bar2,bar3;
@@ -23,8 +24,11 @@ const Toolbar = ( props ) => {
         </div>
            <h3 className={classes.AppName}>AcFi</h3>
            <div className={classes.UserDetailscontainer}>
-               <p>Welcome: {'username'} </p>
-               <p>Welcome: {'username'} </p>
+               <img src={Image} alt='UserIcon' className={classes.UserImage}></img>
+              <div className={classes.UserDetails}>
+                   <p className={classes.UserWelcome}>Welcome: <em><strong>{'Aruna'}</strong></em> </p>
+                   <p className={classes.UserAuthority}>Authority: <em><strong>{'Admin'}</strong></em> </p>
+              </div>
            </div>
         </header>
 

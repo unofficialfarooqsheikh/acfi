@@ -5,7 +5,6 @@ import Toolbar from '../../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../Navigation/SideDrawer/SideDrawer';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import ContentsContainer from '../../UI/ContentsContainer/ContentsContainer';
-import Welcome from '../Contents/Pages/Welcome/Welcome';
 import Payroll from '../Contents/Pages/Payroll/Payroll';
 import WorkForce from '../Contents/Pages/WorkForce/WorkForce';
 import Migrator from '../Contents/Pages/Migrator/Migrator';
@@ -26,7 +25,7 @@ const MainPageLayout =( props ) => {
     // let marginLeft =(sidenav) ? { marginLeft:'17%'}: null;
     return(<Wrap>
         <div>
-            <SideDrawer Show={ShowNavBar}/>
+            <SideDrawer Show={ShowNavBar} clicked ={sidenavHandler}/>
             <Toolbar sidenavHandler={sidenavHandler}  sidenavOpen={sidenav}/> 
             <NotificationBar/>
             <ContentsContainer >

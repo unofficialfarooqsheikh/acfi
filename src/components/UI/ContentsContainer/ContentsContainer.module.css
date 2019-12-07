@@ -45,7 +45,8 @@ background-color: #0ae;
     
     .ContentsContainer{
         /* margin-left: 30vw !important;
-        width: calc(100% - 30vw); */
+		width: calc(100% - 30vw); */
+		height: calc(90% - 56px);
     }
     .ContentsContainer::-webkit-scrollbar
     {

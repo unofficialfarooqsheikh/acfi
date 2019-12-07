@@ -43,6 +43,7 @@ const inputPassword= (props) => {
                             </IconButton>
                         </InputAdornment>
                         }
+                        onKeyPress={props.onKeyPress}
                     />
                 </FormControl>
         </div>

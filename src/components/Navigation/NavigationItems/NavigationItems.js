@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink, withRouter} from 'react-router-dom'
 import classes from './NavigationItems.module.css';
+import Image from '../../../assets/log-out.png'
 
 const navigationItems = (props) => {
     // console.log(props)
@@ -28,7 +29,7 @@ const navigationItems = (props) => {
                     }}
                         activeStyle={{
                         color: '#fa923f'
-                    }}>
+                    }} onClick={props.clicked}>
                         <span className={classes.main}><div className={classes.emojis}><span role="img" aria-label="WorkForce" style={{fontSize:'25px'}}>🏢</span> <span style={{fontSize:'15px'}}>WorkForce</span></div></span>
                         <span className={classes.extra}>WorkForce</span>
                     </NavLink>
@@ -41,7 +42,7 @@ const navigationItems = (props) => {
                     }}
                         activeStyle={{
                         color: '#fa923f'
-                    }}>
+                    }} onClick={props.clicked} >
                         <span className={classes.main}><div className={classes.emojis}><span role="img" aria-label="Pay Roll" style={{fontSize:'25px'}}>🧾</span> <span style={{fontSize:'15px'}}>Payroll</span></div></span>
                         <span className={classes.extra}>Payroll</span>
                     </NavLink>
@@ -59,7 +60,7 @@ const navigationItems = (props) => {
                     }}
                         activeStyle={{
                         color: '#fa923f'
-                    }}>
+                    }} onClick={props.clicked}>
                         <span className={classes.main}><div className={classes.emojis}><span role="img" aria-label="Migrate" style={{fontSize:'25px'}}>🚶</span> <span style={{fontSize:'15px'}}>Migrate</span></div></span>
                         <span className={classes.extra}>Migrator</span>
                     </NavLink>
@@ -71,13 +72,27 @@ const navigationItems = (props) => {
                     }}
                         activeStyle={{
                         color: '#fa923f'
-                    }}>
+                    }} onClick={props.clicked}>
                         <span className={classes.main}><div className={classes.emojis}><span role="img" aria-label="Logs" style={{fontSize:'25px'}}>📕</span> <span style={{fontSize:'15px'}}>Logs</span></div></span>
                         <span className={classes.extra}>Logs</span>
                     </NavLink>
+                
+                
                 </li>
+                    <li>
+                        <NavLink to='/'>
+                        
+                        <span className={classes.main}><div className={classes.emojis}>
+                            <span role="img" aria-label="LogOut" style={{fontSize:'25px'}}>🔒</span>  
+                            <span style={{fontSize:'15px'}}>LogOut</span></div></span>
+                            <span className={classes.UserLogout}><span className={classes.extra}>Log Out</span> <img src={Image} style={{width:'20px',height:'20px'}} alt='LogOutPng'></img></span>
+                            
+                            
+                        </NavLink>
+                    </li>
 
             </ul>
+                        
         </div>
     );
 

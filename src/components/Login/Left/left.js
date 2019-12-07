@@ -15,8 +15,8 @@ const left = (props) => {
                <p >{ex}</p>
      
                <div >
-                    <InputUserName Label="User Name" inputUserName={props.inputUserName} allowed={props.un}/>
-                    <InputPassword Label="Password" pass={props.psdshow} click={props.click} inputPassword={props.inputPassword} allowed={props.un}/>
+                    <InputUserName Label="User Name" inputUserName={props.inputUserName} allowed={props.un} onKeyPress={props.onKeyPress}/>
+                    <InputPassword Label="Password" pass={props.psdshow} click={props.click} inputPassword={props.inputPassword} allowed={props.un} onKeyPress={props.onKeyPress}/>
                </div>
                <br/>
                <Button variant="secondary" type="submit" value="Submit" onClick={props.submitLogin} style={{

@@ -31,36 +31,39 @@ class AcFiBuilder extends Component {
             
         }); 
     }
-    loginHandler =() => {
+    loginHandler =(e) => {
         const suc = {
             ...this.state
         }
+        // console.log(e.key)
         // console.log(this.state.loginInputs ,"login inputs","login Credentials", this.state.loginCredentials );
-        if(this.state.loginInputs.username === this.state.loginCredentials.username && this.state.loginInputs.password === this.state.loginCredentials.password){
-            suc.loginSuccess= true;
-            suc.logedInUser = this.state.loginCredentials.username;
-            // console.log(suc.logedInUser);
-            this.setState({
-                loginInputs: {
-                    username: '',
-                    password: ''
-                },
-                loginSuccess: suc.loginSuccess,
-                logedInUser: suc.logedInUser});
-        }
-        else{
-            alert('Please Check Your Email & Password');
-            // highLight the username and password in red for 2secs
-            this.setState({
-                loginCheck: (!this.state.loginAllowed)
-            })
-            setTimeout(() => {
+        if(e.key === 'Enter'){
+            // console.log(e.key);
+            if(this.state.loginInputs.username === this.state.loginCredentials.username && this.state.loginInputs.password === this.state.loginCredentials.password){
+                suc.loginSuccess= true;
+                suc.logedInUser = this.state.loginCredentials.username;
+                // console.log(suc.logedInUser);
                 this.setState({
-                    loginCheck: (this.state.loginAllowed)
+                    loginInputs: {
+                        username: '',
+                        password: ''
+                    },
+                    loginSuccess: suc.loginSuccess,
+                    logedInUser: suc.logedInUser});
+            }
+            else{
+                alert('Please Check Your Email & Password');
+                // highLight the username and password in red for 2secs
+                this.setState({
+                    loginCheck: (!this.state.loginAllowed)
                 })
-            }, 2000);
-        }   
-       
+                setTimeout(() => {
+                    this.setState({
+                        loginCheck: (this.state.loginAllowed)
+                    })
+                }, 2000);
+            }   
+        }
     }
     inputUserNameHandler = (event) => {
         const inputEmail = {
@@ -87,7 +90,7 @@ class AcFiBuilder extends Component {
             loginCheck={this.loginHandler} 
             inputUserName={(event) => this.inputUserNameHandler(event)}
             inputPassword={(event) => this.inputPasswordHandler(event)}
-            submitLogin={this.loginHandler}
+            submitLogin={(event)=> this.loginHandler(event)}
             un={this.state}
             />);
             let renderLink = null;
@@ -105,7 +108,7 @@ class AcFiBuilder extends Component {
             }
 
         return(
-            <Wrap className={classes.AcFi}>
+            <Wrap className={classes.AcFi} >
                 {loginPage}
                 {renderLink}
             </Wrap>

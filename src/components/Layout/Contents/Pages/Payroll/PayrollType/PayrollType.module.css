@@ -1,4 +1,4 @@
-.PayrollTypeSelectorBackground
+.LOPUploadBackground
 {
     display: flex;
     flex-direction: row-reverse ;
@@ -8,25 +8,63 @@
     align-items: center;
     height: calc(100vh - 56px);
 }
-.PayrollTypeSelectorBox
+.LOPUploadSelectorBox
 { 
     
     /* align-content: center;
-     */
+    */
      
-    border: 1px solid black;
-    box-shadow: 4px 1px 20px 0px #000000bf;
+    border: 5px dotted black;
     border-radius: 5px;
     padding: 3.5rem 2rem;
 }
-.PayrollTypeSelectorButtons
+.LOPUploadSelectorButtons
 { 
     text-align: center;
+}
+.LOPUploadHeading{
+        text-align: center;
+}
+.customFileInput {
+    display: inline-block;
+    position: relative;
+    color: #533e00;
+}
+.customFileInput input {
+    visibility: hidden;
+    width: 100px;
+}
+.customFileInput:before {
+    content: 'Choose File';
+    display: block;
+    background: -webkit-linear-gradient( -180deg, #ffdc73, #febf01);
+    background: -o-linear-gradient( -180deg, #ffdc73, #febf01);
+    background: -moz-linear-gradient( -180deg, #ffdc73, #febf01);
+    background: linear-gradient( -180deg, #ffdc73, #febf01);
+    border: 3px solid #dca602;
+    border-radius: 10px;
+    padding: 5px 0px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    text-shadow: 1px 1px rgba(255,255,255,0.7);
+    font-weight: bold;
+    text-align: center;
+    font-size: 10pt;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.customFileInput:hover:before {
+    border-color: #febf01;
+}
+    .customFileInput:active:before {
+    background: #febf01;
 }
 
 @media (max-width: 600px) {
     
-    .PayrollTypeSelectorBox
+    .LOPUploadSelectorBox
     {
         padding: 1.5rem 1rem; 
         width: inherit; 

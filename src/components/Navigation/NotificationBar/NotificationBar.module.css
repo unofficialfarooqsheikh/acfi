@@ -1,5 +1,4 @@
 .topDiv{
-    width:100%;
     display: flex;
     flex-direction: row-reverse;
     z-index: 250;
@@ -9,12 +8,12 @@
     font-family: "Roboto";
 }
 .NotificationBarContainer{
-    box-shadow: -5px -3px 6px 3px;
+    box-shadow: -5px -3px 5px 0px #00000078;
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
     display: flex;
     flex-direction: column;
     min-width: 150px;
-    width:20vw;
+    width: auto;
 }
 .NotificationBarHead{
     border: solid 0.5px black;
@@ -43,13 +42,16 @@
     background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    height: auto;
+    overflow-y: auto;
+    justify-content: initial;
 }
 .NotificationBarBody > span{
     border: 1px solid #dedede;
     background-color: gray;
     border-radius: 5px;
     text-align: center;
+    width: auto;
 }
 
 @media (max-width: 600px) {
@@ -88,8 +90,21 @@
     }
     .NotificationBarBody{
         width: 50vw;
+        height: 50vw;
+        overflow-y: auto;
+        justify-content: initial;
     }
     .NotificationBarBody > span{
         display: block;
+    }
+    .triangle {
+        width: 0;
+    position: absolute;
+    right: 5px;
+    top: 59px;
+    border-top: 10px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    color: white;
     }
 }

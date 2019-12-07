@@ -62,8 +62,10 @@ flex-direction: column;
 }
 
 .NavigationItems a{
+    display: block;
     text-decoration: none;
     color: #007bff;
+    height: 100%;
 }
 .active li:nth-child(1){
     background-color: red;
@@ -76,6 +78,16 @@ a> li{
 a > li >span{
     color: black;
 }
+.UserLogout{
+    color: black !important;
+}
+.UserLogout:hover{
+ color: red !important;
+}
+.img{
+    width: 30px;
+    height: 30px;
+  }
 @media (max-width: 600px) {
     /* .NavigationItems li{
         height: 100px;
@@ -115,6 +127,9 @@ a > li >span{
 @media (min-height: 600px){
     .NavigationItems ul {
         height: 12vh;
+    }
+    .UserLogout{
+        display: block;
     }
 }
 @media (min-height: 800px){

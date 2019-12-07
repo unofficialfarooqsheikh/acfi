@@ -4,7 +4,7 @@ import classes from './NotificationBar.module.css'
 export default function NotificationBar() {
 
     const [open,setOpen] =useState(false);
-    console.log(open);
+    // console.log(open);
     return (
         <div className={classes.topDiv}>
              <div className={classes.NotificationBarContainer} >
@@ -14,11 +14,25 @@ export default function NotificationBar() {
                     <span role="img" aria-label="NotificationBell" className={classes.two}>	&#128276;</span>
                 </div>
                 {(open)?
-                 <div className={classes.NotificationBarBody}>
-                 <span >A notification message.1.</span>
-                 <span >A notification message.2.</span>
-                 <span >A notification message.3.</span>
-                 <span >A notification message.4.</span>
+                <div>
+                    <div className={classes.triangle}></div>
+                     <div className={classes.NotificationBarBody}>
+                     <span >A notification message.1.</span>
+                     <span >A notification message.2.</span>
+                     <span >A notification message.3.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                     <span >A notification message.4.</span>
+                    </div>
                 </div>:null}
                 
             </div>

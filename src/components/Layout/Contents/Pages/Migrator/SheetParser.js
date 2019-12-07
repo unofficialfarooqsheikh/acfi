@@ -111,7 +111,7 @@ class SheetParser extends Component {
             this.state.colsBreakUp.forEach(element => {
                 // console.log(element.key);
             });
-            // console.log(this.state.cols,this.state.dataBreakUp)
+            console.log(this.state.colsBreakUp,this.state.dataBreakUp)
         };
 		if(rABS) reader.readAsBinaryString(file); else reader.readAsArrayBuffer(file);
 	};
@@ -136,13 +136,13 @@ class SheetParser extends Component {
                                 <OutTable data={this.state.dataBreakUp} cols={this.state.colsBreakUp}  />
                                 <div className={classes.UploadButtonContainer}>
                                     <div className={classes.UploadButtoninnerdiv} >
-                                        <a  className={classes.UploadButton}>
+                                        <button  className={classes.UploadButton}>
                                             <span role="img" aria-label="Logs" style={{fontSize:'25px'}} >🡅 Upload</span>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>);
-            excelInputThumb = <div className={classes.excelthumbContainer}><img src={xlthumb} alt='ExcelfileLogo' className={classes.excelThumb} onClick={this.fileClearHandler}/></div>;
+            excelInputThumb = <div ><img src={xlthumb} alt='ExcelfileLogo' className={classes.excelthumbContainer} onClick={this.fileClearHandler}/></div>;
         } 
         return (
         <DragDropFile handleFile={this.handleFile} >

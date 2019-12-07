@@ -3,6 +3,10 @@ import classes from './login.module.css';
 import Left from './Left/left';
 
 const Login = (props) => {
+
+    // THIS Is Test Cos=de
+    
+
     let Number = Math.round(Math.random() * 10);
     const bg=(a)=> { switch(a){
         // case 0: return classes.background1
@@ -16,9 +20,9 @@ const Login = (props) => {
     var BackgroundN =bg(Number)
     return (
 
-        <div className={BackgroundN}>
+        <div className={BackgroundN} tabIndex='0' onKeyDown={props.submitLogin}>
 
-            <div className={classes.Login}>
+            <div className={classes.Login} >
 
                 <Left
                     classes={classes}
@@ -27,6 +31,7 @@ const Login = (props) => {
                     inputUserName={props.inputUserName}
                     inputPassword={props.inputPassword}
                     submitLogin={props.submitLogin}
+                    onKeyPress={props.submitLogin}
                     un={props.un}/> {/* <Right classes={classes}/> */}
             </div>
 

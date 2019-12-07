@@ -15,7 +15,7 @@ const sideDrawer = ( props ) => {
         <Wrap >
             <div className={classes.SideDrawer} style={props.Show}>
                 <nav>
-                    <NavigationItems />
+                    <NavigationItems clicked={props.clicked}/>
                 </nav>
             </div>
         </Wrap>

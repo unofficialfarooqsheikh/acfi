@@ -20,7 +20,7 @@ const inputUserName = (props) => {
                  props.inputUserName(event);
                  
             }}
-
+        onKeyPress={props.onKeyPress}       
         />
     
     </Wrap>);
