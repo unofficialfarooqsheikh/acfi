@@ -17,7 +17,8 @@ class Bulk extends Component{
         searchTerm: '',
         individualEmployee: false,
         individualEmployeeId: null,
-        individualEmployeeData: null
+        individualEmployeeData: null,
+        month: 'None'
     }
     componentDidMount(){
         //here the data from dummy API and storing in the data by splicing it from API
@@ -26,12 +27,13 @@ class Bulk extends Component{
                 // console.log(response);
                 //slice data
                 const data = response.data;
-                console.log(data);
+                // console.log(data);
                 //making data be duplicted in a variable which can be stored in the state
                 const UpdatedEmployeeDetails = data.map(alldata =>{
                         
                     return{
                         ...alldata,
+                    
                     checkState: false
                 }});
                 //set the state using the data stored in the a constant
@@ -45,9 +47,27 @@ class Bulk extends Component{
             //     this.setState({error: true});
             // });
             //dfghsidfgsdfhggffhfghfd
+        const date = new Date();
+        var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+
+        const Month = month[date.getMonth()]
+        // console.log(Month)
+        this.setState({month: Month});
     }
     componentDidUpdate(){
-        console.log(this.state);
+        // console.log(this.state);
     }
     
     selectAllHandler=(e) => {
@@ -176,14 +196,19 @@ render(){
                         disabled={this.state.individualEmployee}
                     />
             </div>
-            <Table striped bordered hover size="sm"  className={classes.Bulk}>
+        <div><h5 className={classes.headingsInline}>Pay Roll for the month of :</h5><h2 className={classes.headingsInline}>{this.state.month}</h2></div>
+            <Table bordered hover size="sm"  className={classes.Bulk}>
                     <thead>
                     <tr>
                     
-                    <th>S.no</th>
-                    <th>Employee Id</th>
-                    <th>Employee Name</th>
-                    <th>Employee Salary</th>
+                    <th>S.no</th> 
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Gross Salary</th>
+                    <th>LOP</th>
+                    <th>Current Gross</th>
+                    <th>Additional Payments</th>
+                    <th>Deductions</th>
                     <th><input type="checkbox" id="box-1"  onChange={(e) =>{this.selectAllHandler(e)}}/>
                         <label htmlFor="box-1">Select All</label>
                         </th>

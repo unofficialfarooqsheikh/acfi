@@ -4,6 +4,9 @@
 {
 
 }
+.headingsInline{
+  display: inline;
+}
 .BulkEmployeeTable:hover{
  cursor: pointer;
 }

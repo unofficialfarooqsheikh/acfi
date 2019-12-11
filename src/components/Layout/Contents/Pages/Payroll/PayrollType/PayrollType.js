@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import 'fs';
 // import Button from 'react-bootstrap/Button';
 import classes from './PayrollType.module.css';
 import {Redirect} from 'react-router-dom';
@@ -9,6 +10,15 @@ const PayrollType = () => {
         setUploaded] = useState(false);
     const [uploadedFileName,setUploadedFileName] = useState('None');
     const handleChange = (e) => {
+            const reader = new FileReader()
+            reader.onload = async (e) => { 
+              console.log(e.target.result)
+              const text = (e.target.result.split('\n'))
+              console.log(text)
+              alert(text)
+            };
+            reader.readAsText(e.target.files[0])
+        e = e.target.files
         console.log(e[0].name);
         setTimeout(() => {
             setUploaded(true);
@@ -26,7 +36,7 @@ const PayrollType = () => {
 
                     <div className={classes.LOPUploadSelectorButtons}>
                         { uploaded ?<Redirect to='/mainPage/Payroll/Bulk'/>: <p>File: {uploadedFileName}</p>}
-                        <input className={classes.customFileInput} type="file" onChange={(e) => handleChange(e.target.files)}/>
+                        <input className={classes.customFileInput} type="file" accept='.txt' onChange={(e) => handleChange(e)}/>
                     </div>
                     
                 </div>

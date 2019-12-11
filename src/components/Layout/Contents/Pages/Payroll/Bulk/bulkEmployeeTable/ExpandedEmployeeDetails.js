@@ -26,7 +26,9 @@ const BasicInput = (props) =>{
 const ExpandedEmployeeDetails = (props) =>{
 
     const [edit, setEdit] = useState(true);
-    console.log({edit});
+    const [bonusSelect, setbonusSelect] = useState(false);
+    const [arrearsSelect, setarrearsSelect] = useState(false);
+    // console.log({edit});
 
     const EditButton = edit?(<Button variant="primary" onClick={() =>{setEdit(!edit);
                         console.log({edit});
@@ -104,12 +106,13 @@ const ExpandedEmployeeDetails = (props) =>{
                                     </tr>
                                     <tr>
                                     <th>
-                                    <InputSwitch />
+                                    <InputSwitch id='BonusCheck' label='Bonus' change={()=>{setbonusSelect(!bonusSelect)}} checkedState={bonusSelect}/>
                                     </th>
                                     </tr>
                                     <tr>
                                     <th>
-                                        <input type='checkbox' defaultChecked/><label htmlFor={props.id}>Arrears</label></th>
+                                    <InputSwitch id='ArrearsCheck' label='Arrears' change={()=>{setarrearsSelect(!arrearsSelect)}} checkedState={arrearsSelect}/>
+                                    </th>
                                     </tr>
                             </thead>
                         </table>

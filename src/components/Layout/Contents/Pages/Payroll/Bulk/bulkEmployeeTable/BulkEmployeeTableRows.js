@@ -10,10 +10,14 @@ const BulkEmployeeTableRows =(props) => {
         <tbody >
                 <tr  className={classes.BulkEmployeeTable}>
                      
-                        <td onClick={props.ExpandHandler}>{props.sno}</td>
+                        <td >{props.sno}</td>
                         <td onClick={props.ExpandHandler}>{props.id}</td>
                         <td onClick={props.ExpandHandler}>{props.employeeName}</td>
                         <td onClick={props.ExpandHandler}>{props.employeeSalary}</td>
+                        <td onClick={props.ExpandHandler}>{props.lop}</td>
+                        <td onClick={props.ExpandHandler}>{props.currentGross}</td>
+                        <td onClick={props.ExpandHandler}>{props.additionalPayments}</td>
+                        <td onClick={props.ExpandHandler}>{props.Deductions}</td>
                         
                         <td >
                                 

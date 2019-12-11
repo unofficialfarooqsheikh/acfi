@@ -6,12 +6,15 @@ import classes from './DataProvider.module.css';
 
 class DataProvider extends Component {
     state = {
-        checked: true,
+        checked: false,
         data: [],
         date: '2019-12'
     };
     UNSAFE_componentWillMount() {
         this.onLoadHandler()
+    }
+    componentDidMount(){
+
     }
     checkboxHandler = (e,id) => {
         // console.log(e.target.checked, this.state.checked)
@@ -75,15 +78,31 @@ class DataProvider extends Component {
         }
         
     }
+    DownloadAllHandler=()=>{
+          
+    }
+    selectAllHandler=()=>{
+        console.log("here")
+            let temp = [...this.state.data];
+            let toggle = this.state.checked;
+            toggle = !(toggle);
+            this.setState({checked:toggle});
+            temp.forEach(element => {
+                console.log(element);
+                element[3] = toggle;
+            })
+            this.setState({data:temp});
+            console.log(this.state);
+    }
     componentDidUpdate() {
-        // console.log(this.state)
+        console.log(this.state)
     }
     render() {
         
         const RenderedData = this.state.data.map((data,index)=>{
                return(
                 <div key={this.props.keys+data[2]} className={classes.Child2Child1} >
-                        <p style={{cursor: 'pointer'}}>{data[0] +'-'+ data[1]}</p>
+                        <label htmlFor={this.props.keys+data[0]+data[1]} style={{cursor: 'pointer'}}>{data[0] +'-'+ data[1]}</label>
                         <InputSwitch
                         id={this.props.keys+data[0]+data[1]}
                         type="checkbox"
@@ -93,6 +112,7 @@ class DataProvider extends Component {
                ) 
         })
         // console.log("=========Props",this.props)
+        const ButtonName = this.state.checked ?'Deselect All' :'Select All';
         return (
 
             <div className={classes.DataProvider} key={this.props.keys}>
@@ -105,8 +125,10 @@ class DataProvider extends Component {
                 </div>
                 <div className={classes.Child2}>
                 {RenderedData}
-                <input type='button' value='Download'></input>
-                </div>
+               <div className={classes.ButtonContainer}>
+                    <input type='button' value={ButtonName} onClick={this.selectAllHandler}></input>
+                    <input type='button' value='Download' onClick={this.DownloadAllHandler}></input>
+               </div> </div>
                 
             </div>
 
