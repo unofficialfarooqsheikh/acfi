@@ -48,7 +48,7 @@ class Bulk extends Component{
             // });
             //dfghsidfgsdfhggffhfghfd
         const date = new Date();
-        var month = new Array();
+        var month = [];
         month[0] = "January";
         month[1] = "February";
         month[2] = "March";
@@ -196,7 +196,7 @@ render(){
                         disabled={this.state.individualEmployee}
                     />
             </div>
-        <div><h5 className={classes.headingsInline}>Pay Roll for the month of :</h5><h2 className={classes.headingsInline}>{this.state.month}</h2></div>
+<div style={{display:'flex',alignItems:'center'}}><h5 className={classes.headingsInline}>Pay Roll for the month of : {" "}</h5><h2 className={classes.headingsInline}>{this.state.month}</h2></div>
             <Table bordered hover size="sm"  className={classes.Bulk}>
                     <thead>
                     <tr>

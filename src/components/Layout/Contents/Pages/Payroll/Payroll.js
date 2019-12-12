@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import {Route} from 'react-router-dom';
 import Bulk from './Bulk/Bulk';
 import PayrollType from './PayrollType/PayrollType';

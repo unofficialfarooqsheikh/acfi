@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
 import Button from 'react-bootstrap/Button';
-import classes from './BulkEmployee.module.css'
-import InputSwitch from '../../../../../../UI/Input/InputSwitch'
+import classes from './BulkEmployee.module.css';
+import InputToggle from '../../../../../../UI/Input/InputToggle';
+
 
 
 const Tr =(props)=>{
@@ -14,111 +15,131 @@ const Tr =(props)=>{
 const BasicInput = (props) =>{
     
    return(
-
-    <div>
-        <span><label forhtml='input'>{props.label}</label></span> 
-        <span className={classes.input}><input label='input' defaultValue={props.value} disabled={props.disabled} /></span>
+    <div className={classes.DataContainer}>
+        <span className={classes.DataContainerChild1}>{props.label}</span> 
+        <span className={classes.DataContainerChild2}><p>{props.value}</p></span>
     </div>
     ); 
 
 
 }
+
+
+
+
+
+
+
 const ExpandedEmployeeDetails = (props) =>{
-
+    
     const [edit, setEdit] = useState(true);
-    const [bonusSelect, setbonusSelect] = useState(false);
-    const [arrearsSelect, setarrearsSelect] = useState(false);
-    // console.log({edit});
-
+    const [bonusSelect, setBonusSelect] = useState(false);
+    const [arrearsSelect, setArrearsSelect] = useState(false);
+    console.log(arrearsSelect);
+    console.log(bonusSelect);
+    
     const EditButton = edit?(<Button variant="primary" onClick={() =>{setEdit(!edit);
-                        console.log({edit});
-                        }}>Edit</Button>): null; 
-
+        console.log({edit});
+    }}>Edit</Button>): null; 
+    
     const SaveCancelButton = edit ? null :(
-        <div>
+        <div className={classes.editSaveButtons}>
             <Button variant="primary" onClick={() =>{setEdit(!edit);}}>Cancel</Button>
-            <Button variant="primary" onClick={() =>{setEdit(!edit);}}>Saved</Button>
+            <Button variant="primary" onClick={() =>{setEdit(!edit);}}>Save</Button>
         </div>);
+    const BonusContent = bonusSelect ? <div><p>Bonus</p></div>: null;
+    const ArrearsContent = arrearsSelect ? <div><p>Arrears</p></div>: null;
     return(
       
-       <div >
-            
-            <div className={classes.DetailsDiv}>
-                
-                    <div >
-                        <BasicInput label='Employee Number' disabled={edit} value={props.employeeNumber}/>
-                        <BasicInput label='Total Number Of Days' disabled={edit} value={0}/> 
-                        <BasicInput label='Employee Name' disabled={edit} value={props.employeeName}/> 
-                        <BasicInput label='Number of LOP days' disabled={edit} value={3}/> 
-                        <BasicInput label='Designation' disabled={edit} value='Analyst'/> 
-                        <BasicInput label='Payable Days' disabled={edit} value={5}/> 
+       <div className={classes.Container} >
+            <div className={classes.DetailsContainer}>
+                    <div className={classes.DetailsDiv} >
+                        <div className={classes.DetailsDivChild1}>
+                            <BasicInput label='Employee Number' disabled value={props.employeeNumber}/>
+                            <BasicInput label='Total Number Of Days' disabled value={0}/> 
+                        </div>
+                        <div className={classes.DetailsDivChild1}>
+                            <BasicInput label='Employee Name' disabled value={props.employeeName}/> 
+                            <BasicInput label='Number of LOP days' disabled value={3}/> 
+                        </div>
+                        <div className={classes.DetailsDivChild1}>
+                            <BasicInput label='Designation' disabled value='Analyst'/> 
+                            <BasicInput label='Payable Days' disabled value={5}/>
+                        </div> 
                     </div>
-                    {EditButton}
-                    {SaveCancelButton}
             </div>
-
-            <div className={classes.Employee}>
+            <div className={classes.DetailsContainer2}>
                 
-                <div >
+                <div className={classes.Employee}>
                     
-                        <table   >
-                                    <thead>
-                                    <tr>
-                                    <th>Earning Component</th>
-                                    <th>Amount</th>
-                                    </tr>
-                                    </thead> 
-                                    <tbody>
-                                        <Tr label='Basic Pay' data={0}/>
-                                        <Tr label='House Rent Allowance' data={1}/>
-                                        <Tr label='Conveyance Allowance' data={2}/>
-                                        <Tr label='Medical Allowance' data={3}/>
-                                        <Tr label='Leave Travel Allowance' data={4}/>
-                                        <Tr label='Other Allowances' data={5}/>
-                                        <Tr label='Total Earnings' data={6}/>
-                                    </tbody>
-                        </table>
-                </div>
-                   <div>
-                        <table  >
-                                    <thead>
-                                    <tr>
-                                    <th>Deduction Component</th>
-                                    <th>Label</th>
-                                    </tr>
-                                    </thead> 
-                                    <tbody>
-                                        <Tr label='PF Employer Contribution' data={7}/>
-                                        <Tr label='PF Employer Contribution' data={8}/>
-                                        <Tr label='Professional Tax' data={9}/>
-                                        <Tr label='Income tax' data={10}/>
-                                        <Tr style={{visibility:'hidden'}}/>
-                                        <Tr style={{visibility:'hidden'}}/>
-                                        <Tr label='Total Deductions' data={11}/>
-                                    </tbody>
-                        </table>
-                   </div>
                     <div>
-                        <table  >
-                            <thead>
-                                    <tr>
-                                    <th> Additional Components</th>
-                                    </tr>
-                                    <tr>
-                                    <th>
-                                    <InputSwitch id='BonusCheck' label='Bonus' change={()=>{setbonusSelect(!bonusSelect)}} checkedState={bonusSelect}/>
-                                    </th>
-                                    </tr>
-                                    <tr>
-                                    <th>
-                                    <InputSwitch id='ArrearsCheck' label='Arrears' change={()=>{setarrearsSelect(!arrearsSelect)}} checkedState={arrearsSelect}/>
-                                    </th>
-                                    </tr>
-                            </thead>
-                        </table>
+                            <table>
+                                        <thead>
+                                        <tr>
+                                        <th>Earning Component</th>
+                                        <th>Amount</th>
+                                        </tr>
+                                        </thead> 
+                                        <tbody>
+                                            <Tr label='Basic Pay' data={0}/>
+                                            <Tr label='House Rent Allowance' data={1}/>
+                                            <Tr label='Conveyance Allowance' data={2}/>
+                                            <Tr label='Medical Allowance' data={3}/>
+                                            <Tr label='Leave Travel Allowance' data={4}/>
+                                            <Tr label='Other Allowances' data={5}/>
+                                            <Tr label='Total Earnings' data={6}/>
+                                        </tbody>
+                            </table>
                     </div>
-            </div>
-         
+                       <div>
+                            <table  >
+                                        <thead>
+                                        <tr>
+                                        <th>Deduction Component</th>
+                                        <th>Label</th>
+                                        </tr>
+                                        </thead> 
+                                        <tbody>
+                                            <Tr label='PF Employer Contribution' data={7}/>
+                                            <Tr label='PF Employer Contribution' data={8}/>
+                                            <Tr label='Professional Tax' data={9}/>
+                                            <Tr label='Income tax' data={10}/>
+                                            <Tr style={{visibility:'hidden'}}/>
+                                            <Tr style={{visibility:'hidden'}}/>
+                                            <Tr label='Total Deductions' data={11}/>
+                                        </tbody>
+                            </table>
+                       </div>
+                </div>
+                <div className={classes.AdditionalComponents}>
+                            <table  >
+                                <thead>
+                                        <tr>
+                                        <th> Additional Components</th>
+                                        </tr>
+                                        <tr>
+                                        <th>
+                                        <InputToggle id='BonusCheck' label='Bonus'  
+                                        change={(e)=>{
+                                            // console.log(element.scrollBy(0,1),window.scrollY);
+                                            setBonusSelect(!bonusSelect)}} checked={bonusSelect} disabled={edit}/>
+                                        {BonusContent}
+                                        </th>
+                                        </tr>
+                                        <tr>
+                                        <th>
+                                        <InputToggle id='ArrearsCheck' label='Arrears' change={()=>{setArrearsSelect(!arrearsSelect)}}  checked={arrearsSelect} disabled={edit}/>
+                                        {ArrearsContent}
+                                        </th>
+                                        </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    <div className={classes.buttonsDiv}>
+                            {EditButton}
+                        {SaveCancelButton}
+                    </div>
+            </div>   
        </div>
      
     );

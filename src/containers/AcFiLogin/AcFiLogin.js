@@ -35,9 +35,9 @@ class AcFiBuilder extends Component {
         const suc = {
             ...this.state
         }
-        // console.log(e.key)
+        // console.log(e)
         // console.log(this.state.loginInputs ,"login inputs","login Credentials", this.state.loginCredentials );
-        if(e.key === 'Enter'){
+        if(e.key === 'Enter' || e.nativeEvent.type === 'click' ){
             // console.log(e.key);
             if(this.state.loginInputs.username === this.state.loginCredentials.username && this.state.loginInputs.password === this.state.loginCredentials.password){
                 suc.loginSuccess= true;

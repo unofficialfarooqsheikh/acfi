@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrawer.module.css';
-import Backdrop from '../../UI/Backdrop/Backdrop';
+// import Backdrop from '../../UI/Backdrop/Backdrop';
 import Wrap from '../../../Hoc/Wrap';
 
 const sideDrawer = ( props ) => {
