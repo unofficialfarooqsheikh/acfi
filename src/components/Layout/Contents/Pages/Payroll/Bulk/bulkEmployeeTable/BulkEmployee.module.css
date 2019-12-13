@@ -1,13 +1,27 @@
 .Container{
-    width: 85vw;
-    height: 64.5vh;
+    width: 75vw;
+    height: 64vh;
     overflow: auto;
+    margin: auto;
 }
 .buttonsDiv{}
-.Employee,.AdditionalComponents,.buttonsDiv{
+.Employee,.buttonsDiv{
     display: flex;
     flex-wrap: wrap;
-    margin-left:20px;
+    /* justify-content: space-between; */
+    margin:auto;
+}
+.TablesContainer{
+    width: 100%;
+}
+.AdditionalComponents{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 10px;
+}
+.AdditionalComponents>table{
+    width: 50vw;
 }
 .AdditionalComponents>table>thead{
     background-color: rgb(226, 209, 209);
@@ -19,21 +33,20 @@
 }
 .Employee > div,.AdditionalComponents> table  {
     border: 0.5px solid;
-    box-shadow: 1px 1px black;
+
 }
-.AdditionalComponents>table{
-    width: 87%;
-}
+
 /* For the First data container */
 .DetailsContainer{
-    width: 75%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    margin:20px;
 }
 .DetailsContainer2{
     display: flex;
     flex-direction: column;
-
+    
 }
 .DetailsDiv
 {
@@ -43,7 +56,6 @@
     display: flex;
     flex-direction:row;
     justify-content: space-between;
-    margin-left:20px;
 }
 .DataContainer{
     /* display: table-row; */
@@ -62,8 +74,7 @@
 
 .editSaveButtons{
   display: flex;
-  width: 85%;
-  justify-content: space-between;
+  margin: auto;
 }
 .DetailsDiv > div > div > span >label{
     display: inline-block;
@@ -141,9 +152,34 @@
   }
   
   table{
-      background-color: #54bec826;
+      /* background-color: #54bec826; */
       border: black;
+      table-layout:auto;
   }
   thead{
     background-color: #009bff69;
   }
+  @media (max-width: 1000px) {
+    .Container{
+        width: 100vw;
+        margin: initial;
+    }
+    .Employee > div,div>table {
+        width:100%;
+        margin: 2px;
+    }
+    .Employee{
+    flex-direction: row;
+    }       
+    .AdditionalComponents>table{
+        width: 90vw;
+    }
+    .AdditionalComponents>th{
+        margin: 5px;
+    }   
+}
+/* @media (max-width: 900px) {
+    .Container{
+        width: 100vw;
+    }
+} */

@@ -1,5 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+.TableContainer{
+  overflow: auto;
+  height: calc(75vh);
+}
+.CancelConfirmButtons{
+  margin: auto;
+  width:20vw;
+}
 .Bulk
 {
 
@@ -73,4 +81,10 @@ width: fit-content;
 }
 td{
 
+}
+@media (max-width: 600px){
+.CancelConfirmButtons{
+  margin: auto;
+  width:100vw;
+}
 }

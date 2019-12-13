@@ -1,11 +1,11 @@
 import React from 'react';
-
+import classes from './InputSwitch.module.css'
 
 const InputSwitch = (props) => {
 
    return(
-   <div >
-    <input type='checkbox'
+   <div className={classes.InputSwitch}>
+    <input type='checkbox' 
                                 id={props.id}
                                 onChange={props.change} 
                                 checked={props.checkedState}  

@@ -2,11 +2,13 @@ import React,{Component} from 'react';
 import BulkEmployeeTableRows from './bulkEmployeeTable/BulkEmployeeTableRows';
 import classes from './Bulk.module.css'
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
 import ExpandedEmployeeDetails from './bulkEmployeeTable/ExpandedEmployeeDetails';
 import Skeleton from 'react-loading-skeleton';
+
 
 class Bulk extends Component{
     state = {
@@ -179,7 +181,10 @@ render(){
 
         let employeesWithLoading = (this.state.loading === true) ? null : Employees;
         let Skeletons = (this.state.loading === true) ? <Skeleton  count={18} height={25} width={'99vw'}/>: null;
-    
+        let CancelConfirmButtons = (ExpandedEmployee === null) ?<div className={classes.CancelConfirmButtons}>
+        <Button>Cancel</Button>
+        <Button>Confirm</Button>
+    </div> : null;
         return(
 
         <div>
@@ -214,12 +219,14 @@ render(){
                         </th>
                     </tr>
                     </thead>
-                   
+                    
 
-                    {employeesWithLoading }
+                    <tbody>{employeesWithLoading }</tbody>
             </Table>
-            {ExpandedEmployee}
             {Skeletons}
+            {ExpandedEmployee}
+            {CancelConfirmButtons}
+            
         </div>
         );
 

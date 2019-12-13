@@ -28,6 +28,6 @@ background-color: #0ae;
 @media (max-width: 600px) {
 ::-webkit-scrollbar
     {
-	width: 0px !important;
+	display:none
     }
 }
