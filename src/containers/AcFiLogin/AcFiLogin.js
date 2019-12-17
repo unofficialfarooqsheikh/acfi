@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import classes from '../AcFiLogin/AcFiLogin.module.css'
-import Wrap from '../../Hoc/Wrap'
+import axios from 'axios';
+import classes from '../AcFiLogin/AcFiLogin.module.css';
+import Wrap from '../../Hoc/Wrap';
 // import Layout from '../../components/Layout/MainPageLayout/MainPageLayout';
 import Login from '../../components/Login/login';
 import {Redirect} from 'react-router-dom';
@@ -21,7 +22,6 @@ class AcFiBuilder extends Component {
             password: ''
         }
     }
-
     showPasswordHandler = () => {
         const doesShow = this.state.loginAllowed;
         this.setState( (prevState, props) => {
@@ -39,6 +39,27 @@ class AcFiBuilder extends Component {
         // console.log(this.state.loginInputs ,"login inputs","login Credentials", this.state.loginCredentials );
         if(e.key === 'Enter' || e.nativeEvent.type === 'click' ){
             // console.log(e.key);
+            // Connection to API
+            var url= "http://127.0.0.1:5000/auth";
+            let data = JSON.stringify({
+                username: this.state.loginInputs.username,
+                password: this.state.loginInputs.password
+            });
+            axios.post(url,data,{
+                headers: {
+                    "Content-Type": "application/json",
+                    'Access-Control-Allow-Origin': '*',
+                        }
+            })
+              .then((response) => {
+                console.log("Response",response);
+              })
+              .catch((error) =>{
+                console.log("Error",error);
+              });
+            // 
+
+
             if(this.state.loginInputs.username === this.state.loginCredentials.username && this.state.loginInputs.password === this.state.loginCredentials.password){
                 suc.loginSuccess= true;
                 suc.logedInUser = this.state.loginCredentials.username;
