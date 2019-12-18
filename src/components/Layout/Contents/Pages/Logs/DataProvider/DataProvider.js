@@ -18,9 +18,9 @@ class DataProvider extends Component {
     }
     checkboxHandler = (e,id) => {
         // console.log(e.target.checked, this.state.checked)
-            console.log(this.state.data[id])
+            // console.log(this.state.data[id])
             const temp = [...this.state.data];
-            console.log(temp)
+            // console.log(temp)
                 temp[id][3]= e.target.checked;
         this.setState({data: temp});
         
@@ -31,7 +31,7 @@ class DataProvider extends Component {
             if(Months.length < 6 && Months.length !== 0){
                 for (let i = 12; i > 0; i--) {
                     Months = Months.concat((Y.toString() + '-' + i.toString()))
-                    console.log(Months)
+                    // console.log(Months)
                     if (Months.length === 6) {
                         break;
                     }
@@ -66,7 +66,7 @@ class DataProvider extends Component {
         const [InputYear,
             InputMonth] = e.target.value.split('-');
         var Data = this.convertMonthAndYearInput(InputYear,InputMonth);
-        console.log(Data)
+        // console.log(Data)
         this.setState({data: Data});
     }
     onLoadHandler=()=>{
@@ -82,20 +82,20 @@ class DataProvider extends Component {
           
     }
     selectAllHandler=()=>{
-        console.log("here")
+        // console.log("here")
             let temp = [...this.state.data];
             let toggle = this.state.checked;
             toggle = !(toggle);
             this.setState({checked:toggle});
             temp.forEach(element => {
-                console.log(element);
+                // console.log(element);
                 element[3] = toggle;
             })
             this.setState({data:temp});
-            console.log(this.state);
+            // console.log(this.state);
     }
     componentDidUpdate() {
-        console.log(this.state)
+        // console.log(this.state)
     }
     render() {
         

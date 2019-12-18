@@ -6,14 +6,10 @@ import Wrap from '../../Hoc/Wrap';
 import Login from '../../components/Login/login';
 import {Redirect} from 'react-router-dom';
 
-class AcFiBuilder extends Component {
+class AcFiLogin extends Component {
 
     state = {
-        loginCredentials: {
-            username: 'Admin',
-            password: 'Admin'
-        },
-        logedInUser:'',
+        loggedInUser:'',
         loginSuccess:false,
         loginAllowed: false,
         loginCheck:false,
@@ -32,12 +28,13 @@ class AcFiBuilder extends Component {
         }); 
     }
     loginHandler =(e) => {
+
         const suc = {
             ...this.state
         }
-        // console.log(e)
+        // console.log(e.which)
         // console.log(this.state.loginInputs ,"login inputs","login Credentials", this.state.loginCredentials );
-        if(e.key === 'Enter' || e.nativeEvent.type === 'click' ){
+        if(e.nativeEvent.type === 'click' || e.which === 13){
             // console.log(e.key);
             // Connection to API
             var url= "http://127.0.0.1:5000/auth";
@@ -52,38 +49,45 @@ class AcFiBuilder extends Component {
                         }
             })
               .then((response) => {
-                console.log("Response",response);
-              })
-              .catch((error) =>{
+                // console.log("Response",response);
+                sessionStorage.setItem('Token',response.data['access_token'] )
+                login();
+            })
+            .catch((error) =>{
                 console.log("Error",error);
-              });
-            // 
-
-
-            if(this.state.loginInputs.username === this.state.loginCredentials.username && this.state.loginInputs.password === this.state.loginCredentials.password){
-                suc.loginSuccess= true;
-                suc.logedInUser = this.state.loginCredentials.username;
-                // console.log(suc.logedInUser);
-                this.setState({
-                    loginInputs: {
-                        username: '',
-                        password: ''
-                    },
-                    loginSuccess: suc.loginSuccess,
-                    logedInUser: suc.logedInUser});
-            }
-            else{
-                alert('Please Check Your Email & Password');
-                // highLight the username and password in red for 2secs
-                this.setState({
-                    loginCheck: (!this.state.loginAllowed)
-                })
-                setTimeout(() => {
+                login();
+            });
+            //
+            
+             const login=()=> {
+                let authenticate= sessionStorage.getItem('Token');
+                // alert("token",authenticate)
+                if(authenticate){
+                    suc.loginSuccess= true;
+                    suc.loggedInUser = this.state.loginInputs.username;
+                    // console.log(suc.logedInUser);
                     this.setState({
-                        loginCheck: (this.state.loginAllowed)
+                        loginInputs: {
+                            username: '',
+                            password: ''
+                        },
+                        loginSuccess: suc.loginSuccess,
+                        logedInUser: suc.logedInUser});
+                }
+                else{
+                    alert('Please Check Your Email & Password');
+                    // highLight the username and password in red for 2secs
+                    this.setState({
+                        loginCheck: (!this.state.loginAllowed)
                     })
-                }, 2000);
-            }   
+                    setTimeout(() => {
+                        this.setState({
+                            loginCheck: (this.state.loginAllowed)
+                        })
+                    }, 2000);
+                }
+              }
+               
         }
     }
     inputUserNameHandler = (event) => {
@@ -102,13 +106,12 @@ class AcFiBuilder extends Component {
         this.setState({ loginInputs: inputEmail});
         // console.log("inInputChange Password");
     }
-  
+
     render(){
         
         
         let loginPage = (<Login psdshow={this.state.loginAllowed} 
             click={this.showPasswordHandler} 
-            loginCheck={this.loginHandler} 
             inputUserName={(event) => this.inputUserNameHandler(event)}
             inputPassword={(event) => this.inputPasswordHandler(event)}
             submitLogin={(event)=> this.loginHandler(event)}
@@ -127,7 +130,8 @@ class AcFiBuilder extends Component {
                             }} />
                 );
             }
-
+                
+        
         return(
             <Wrap className={classes.AcFi} >
                 {loginPage}
@@ -138,4 +142,4 @@ class AcFiBuilder extends Component {
 
 }
 
-export default AcFiBuilder;
+export default AcFiLogin;

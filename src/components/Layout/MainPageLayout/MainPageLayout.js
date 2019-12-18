@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Route} from 'react-router-dom';
+import SecureRoute from '../../../containers/SecureRoute/SecureRoute';
 import Wrap from '../../../Hoc/Wrap';
 import Toolbar from '../../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../Navigation/SideDrawer/SideDrawer';
@@ -30,10 +30,10 @@ const MainPageLayout =( props ) => {
             <NotificationBar/>
             <ContentsContainer >
             <Backdrop left={margin} show={sidenav} clicked ={sidenavHandler}/>
-            <Route path={props.match.url+'/Payroll'} component={Payroll}/>
-            <Route path={props.match.url+'/WorkForce'} exact component={WorkForce}/>
-            <Route path={props.match.url+'/Migrator'} exact component={Migrator}/>
-            <Route path={props.match.url+'/Logs'} component={Logs}/>
+            <SecureRoute path={props.match.url+'/Payroll'} component={Payroll}/>
+            <SecureRoute path={props.match.url+'/WorkForce'} exact component={WorkForce}/>
+            <SecureRoute path={props.match.url+'/Migrator'} exact component={Migrator}/>
+            <SecureRoute path={props.match.url+'/Logs'} component={Logs}/>
             </ContentsContainer>
         </div>
     </Wrap>);   

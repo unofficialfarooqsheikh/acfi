@@ -80,13 +80,15 @@ const navigationItems = (props) => {
                 
                 </li>
                     <li>
-                        <NavLink to='/'>
-                        
-                        <span className={classes.main}><div className={classes.emojis}>
-                            <span role="img" aria-label="LogOut" style={{fontSize:'25px'}}>🔒</span>  
-                            <span style={{fontSize:'15px'}}>LogOut</span></div></span>
-                            <span className={classes.UserLogout}><span className={classes.extra}>Log Out</span> <img src={Image} style={{width:'20px',height:'20px'}} alt='LogOutPng'></img></span>
+                        <NavLink to='/' >
+                        <div onClick={()=>{sessionStorage.removeItem("Token")}}>
                             
+                            <span className={classes.main}><div className={classes.emojis}>
+                                <span role="img" aria-label="LogOut" style={{fontSize:'25px'}}>🔒</span>  
+                                <span style={{fontSize:'15px'}}>LogOut</span></div></span>
+                                <span className={classes.UserLogout}><span className={classes.extra}>Log Out</span> <img src={Image} style={{width:'20px',height:'20px'}} alt='LogOutPng'></img></span>
+                                
+                        </div>
                             
                         </NavLink>
                     </li>

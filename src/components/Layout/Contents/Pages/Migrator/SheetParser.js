@@ -111,7 +111,7 @@ class SheetParser extends Component {
             this.state.colsBreakUp.forEach(element => {
                 // console.log(element.key);
             });
-            console.log(this.state.colsBreakUp,this.state.dataBreakUp)
+            // console.log(this.state.colsBreakUp,this.state.dataBreakUp)
         };
 		if(rABS) reader.readAsBinaryString(file); else reader.readAsArrayBuffer(file);
 	};

@@ -6,7 +6,7 @@ const Login = (props) => {
 
     // THIS Is Test Cos=de
     
-
+    // console.log(props)
     let Number = Math.round(Math.random() * 10);
     const bg=(a)=> { switch(a){
         // case 0: return classes.background1
@@ -31,10 +31,8 @@ const Login = (props) => {
                     inputUserName={props.inputUserName}
                     inputPassword={props.inputPassword}
                     submitLogin={props.submitLogin}
-                    onKeyPress={props.submitLogin}
                     un={props.un}/> {/* <Right classes={classes}/> */}
             </div>
-
         </div>
 
     );
