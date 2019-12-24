@@ -24,7 +24,14 @@ class Bulk extends Component{
     }
     componentDidMount(){
         //here the data from dummy API and storing in the data by splicing it from API
-        axios.get('http://localhost:8080/data')
+        // alert(sessionStorage.getItem('Token'))
+        var url= "http://127.0.0.1:5000/payrolldata";
+            axios.get(url,{
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "jwt "+ sessionStorage.getItem('Token')+""
+                        }
+            })
             .then(response =>{
                 // console.log(response);
                 //slice data
@@ -68,9 +75,7 @@ class Bulk extends Component{
         // console.log(Month)
         this.setState({month: Month});
     }
-    componentDidUpdate(){
-        // console.log(this.state);
-    }
+    
     
     selectAllHandler=(e) => {
         const temp = [...this.state.employeeDetails];

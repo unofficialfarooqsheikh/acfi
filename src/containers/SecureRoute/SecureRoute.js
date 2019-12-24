@@ -5,6 +5,7 @@ const SecureRoute = ({component: Component, ...rest }) =>{
     return (<Route {...rest}
         render={
             (props) =>{
+                // console.log(props)
                 if(sessionStorage.getItem('Token')){
                     return <Component {...props} />
                 }

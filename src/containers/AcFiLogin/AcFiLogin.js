@@ -109,7 +109,6 @@ class AcFiLogin extends Component {
 
     render(){
         
-        
         let loginPage = (<Login psdshow={this.state.loginAllowed} 
             click={this.showPasswordHandler} 
             inputUserName={(event) => this.inputUserNameHandler(event)}

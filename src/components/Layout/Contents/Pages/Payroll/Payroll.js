@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import Bulk from './Bulk/Bulk';
 import PayrollType from './PayrollType/PayrollType';
+import SecureRoute from '../../../../../containers/SecureRoute/SecureRoute'
 
 class Payroll extends Component{
 
@@ -21,8 +22,8 @@ render(){
     return(
      
           <div>
-                <Route path='/mainPage/Payroll' exact component={PayrollType} />    
-                <Route path='/mainPage/Payroll/Bulk' exact component={Bulk} />
+                <SecureRoute path='/mainPage/Payroll' exact component={PayrollType} />    
+                <SecureRoute path='/mainPage/Payroll/Bulk' exact component={Bulk} />
           </div>
     );
 };
