@@ -100,8 +100,8 @@
     .triangle {
         width: 0;
         position: absolute;
-        right: 5px;
-        top: 49px;
+        right: 2px;
+        top: 46px;
         border-bottom: 10px solid white;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;

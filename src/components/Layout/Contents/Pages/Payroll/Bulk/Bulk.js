@@ -33,7 +33,7 @@ class Bulk extends Component{
                         }
             })
             .then(response =>{
-                // console.log(response);
+                console.log(response);
                 //slice data
                 const data = response.data;
                 // console.log(data);
@@ -115,6 +115,14 @@ class Bulk extends Component{
                        individualEmployeeId: id })
         // console.log(this.state)
     }
+    confirmHandler=()=>{
+        if(this.state.selectAll){
+            alert("Working in select all")
+        }
+        else{
+            alert("Select ALL is  False Bro!!"+this.state.selectAll)
+        }
+    }
 render(){
     // console.log(this.state)
     //  the filtering of employees from state based on the input at search box
@@ -188,7 +196,7 @@ render(){
         let Skeletons = (this.state.loading === true) ? <Skeleton  count={18} height={25} width={'99vw'}/>: null;
         let CancelConfirmButtons = (ExpandedEmployee === null) ?<div className={classes.CancelConfirmButtons}>
         <Button>Cancel</Button>
-        <Button>Confirm</Button>
+        <Button onClick={this.confirmHandler}>Confirm</Button>
     </div> : null;
         return(
 

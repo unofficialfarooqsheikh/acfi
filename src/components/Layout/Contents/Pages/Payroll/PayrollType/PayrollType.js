@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import 'fs';
+import axios from 'axios';
 // import Button from 'react-bootstrap/Button';
 import classes from './PayrollType.module.css';
 import {Redirect} from 'react-router-dom';
@@ -13,9 +14,22 @@ const PayrollType = () => {
             const reader = new FileReader()
             reader.onload = async (e) => { 
             //   console.log(e.target.result)
-              const text = (e.target.result.split('\n'))
+              const data = (e.target.result)
             //   console.log(text)
-              alert(text)
+            var url= "http://127.0.0.1:5000/lopupload";
+            axios.post(url,data,{
+                headers: {
+                    "Content-Type": "application/json",
+                    'Access-Control-Allow-Origin': '*',
+                        }
+            })
+              .then((response) => {
+                // console.log("Response",response);
+            })
+            .catch((error) =>{
+                console.log("Error",error);
+            });
+              alert(data)
             };
             reader.readAsText(e.target.files[0])
         e = e.target.files
