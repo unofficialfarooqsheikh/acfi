@@ -6,7 +6,8 @@ const SecureRoute = ({component: Component, ...rest }) =>{
         render={
             (props) =>{
                 // console.log(props)
-                if(sessionStorage.getItem('Token')){
+                // if(sessionStorage.getItem('Token')){ //unComment for working login check
+                if(true){
                     return <Component {...props} />
                 }
                 else{

@@ -62,7 +62,9 @@ class AcFiLogin extends Component {
              const login=()=> {
                 let authenticate= sessionStorage.getItem('Token');
                 // alert("token",authenticate)
-                if(authenticate){
+                // if(authenticate){ //Uncomment for working Login
+                console.log('hey');
+                if(true){
                     suc.loginSuccess= true;
                     suc.loggedInUser = this.state.loginInputs.username;
                     // console.log(suc.logedInUser);
