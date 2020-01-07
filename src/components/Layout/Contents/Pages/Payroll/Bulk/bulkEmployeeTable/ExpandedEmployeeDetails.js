@@ -97,7 +97,7 @@ const ExpandedEmployeeDetails = (props) =>{
                                             </tr>
                                             </thead> 
                                             <tbody>
-                                                <Tr label='Basic Pay' data={0}/>
+                                                <Tr label='Basic Pay' data={props.employeeData.BasicPay}/>
                                                 <Tr label='House Rent Allowance' data={1}/>
                                                 <Tr label='Conveyance Allowance' data={2}/>
                                                 <Tr label='Medical Allowance' data={3}/>

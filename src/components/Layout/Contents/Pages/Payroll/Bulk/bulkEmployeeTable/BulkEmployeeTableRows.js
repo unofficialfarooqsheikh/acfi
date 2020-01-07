@@ -3,7 +3,7 @@ import classes from '../Bulk.module.css';
 import InputSwitch from '../../../../../../UI/Input/InputSwitch';
 
 const BulkEmployeeTableRows =(props) => {
-   
+   console.log(props)
     return(
         
             <React.Fragment>
@@ -11,16 +11,15 @@ const BulkEmployeeTableRows =(props) => {
                     <tr  className={classes.BulkEmployeeTable}>
                          
                             <td >{props.sno}</td>
-                            <td onClick={props.ExpandHandler}>{props.id}</td>
-                            <td onClick={props.ExpandHandler}>{props.employeeName}</td>
-                            <td onClick={props.ExpandHandler}>{props.employeeSalary}</td>
-                            <td onClick={props.ExpandHandler}>{props.lop}</td>
-                            <td onClick={props.ExpandHandler}>{props.currentGross}</td>
-                            <td onClick={props.ExpandHandler}>{props.additionalPayments}</td>
-                            <td onClick={props.ExpandHandler}>{props.Deductions}</td>
-                            
+                            <td onClick={props.ExpandHandler}>{props.employeeData.id}</td>
+                            <td onClick={props.ExpandHandler}>{props.employeeData.employee_name}</td>
+                            <td onClick={props.ExpandHandler}>{props.employeeData.employee_salary}</td>
+                            <td onClick={props.ExpandHandler}>{props.employeeData.LOP}</td>
+                            <td onClick={props.ExpandHandler}>{props.employeeData.CurrentGrossafterLOP}</td>
+                            <td onClick={props.ExpandHandler}>{props.employeeData.OtherAllowance}</td>
+                            <td onClick={props.ExpandHandler}>{props.employeeData.TotalDeductions}</td>
                             <td >
-                                    
+                
                                     {/* <input type='checkbox' 
                                     id={props.id}
                                     onChange={props.change} 

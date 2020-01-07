@@ -1,10 +1,13 @@
 import React , {Component} from 'react';
 import SheetParser from './SheetParser';
+import Uploader from './Uploader';
 class Migrator extends Component {
     render(){
 
             return (
-              <SheetParser/>
+              <React.Fragment>
+                <Uploader/>
+              </React.Fragment>
             )
     }
 }

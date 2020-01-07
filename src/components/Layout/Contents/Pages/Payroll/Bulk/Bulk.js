@@ -20,37 +20,27 @@ class Bulk extends Component{
         individualEmployee: false,
         individualEmployeeId: null,
         individualEmployeeData: null,
-        month: 'None'
+        month: 'None',
+        lop: null
     }
     componentDidMount(){
         //here the data from dummy API and storing in the data by splicing it from API
         // alert(sessionStorage.getItem('Token'))
-        var url= "http://127.0.0.1:5000/payrolldata";
-            axios.get(url,{
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "jwt "+ sessionStorage.getItem('Token')+""
-                        }
-            })
-            .then(response =>{
-                console.log(response);
-                //slice data
-                const data = response.data;
-                // console.log(data);
+        const data = this.props.Data;
+                console.log(data);
                 //making data be duplicted in a variable which can be stored in the state
                 const UpdatedEmployeeDetails = data.map(alldata =>{
-                        
+                    console.log(alldata)
                     return{
                         ...alldata,
-                    
                     checkState: false
-                }});
+                }
+            });
                 //set the state using the data stored in the a constant
                 this.setState ({
                     employeeDetails: UpdatedEmployeeDetails,
                     loading: false
                 })
-            });
             // .catch(error => {
             //     // console.log(error);
             //     this.setState({error: true});
@@ -74,6 +64,7 @@ class Bulk extends Component{
         const Month = month[date.getMonth()]
         // console.log(Month)
         this.setState({month: Month});
+        console.log(this.state)
     }
     
     
@@ -109,7 +100,7 @@ class Bulk extends Component{
     }
     individualEmployeeHandler =(e,id) =>{
         const indEmployee=this.state.individualEmployee
-        // console.log(e,id);
+        console.log(e,id);
         this.setState({individualEmployee: !(indEmployee),
                        individualEmployeeData:this.state.employeeDetails[id],
                        individualEmployeeId: id })
@@ -124,10 +115,11 @@ class Bulk extends Component{
         }
     }
 render(){
-    // console.log(this.state)
+    // console.log(this.props)
     //  the filtering of employees from state based on the input at search box
         const filteredEmployeeDetails =this.state.employeeDetails.filter(
             (employee) => {
+                console.log(employee.employee_salary)
                 let FinalResult;
                 let filtersearch=(a) => {
                     if(a >= 0)
@@ -164,6 +156,7 @@ render(){
                     sno={sno+1}
                     id={alldata.id} 
                     ExpandHandler={(e)=>this.individualEmployeeHandler(e,sno)}
+                    employeeData = {alldata}
                     employeeName={alldata.employee_name} 
                     employeeSalary={alldata.employee_salary}
                     classes={classes}
@@ -182,13 +175,12 @@ render(){
                 sno={1}
                 id={individualEmployeedata.id} 
                 ExpandHandler={(e)=>this.individualEmployeeHandler(e,individualEmployeedata.id)}
-                employeeName={individualEmployeedata.employee_name} 
-                employeeSalary={individualEmployeedata.employee_salary}
-                checkedState={individualEmployeedata.checkState}
+                employeeData = {individualEmployeedata}
                 change={(e) => this.individualChangeHandler(e,individualEmployeedata.id) }
                 />);
                 ExpandedEmployee= (<ExpandedEmployeeDetails employeeNumber={this.state.individualEmployeeData.id}
                     employeeName={this.state.individualEmployeeData.employee_name} 
+                    employeeData = {individualEmployeedata}
                         />);
        }
 
