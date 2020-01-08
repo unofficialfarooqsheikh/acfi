@@ -1,0 +1,53 @@
+.Square{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+}
+.TableContainer{
+    width:100vw;
+    height: 60vh;
+    overflow: scroll;
+}
+th.payrollPreview
+{
+    position: sticky;
+    top: -2px;
+    background-color: #0B6FA4;
+}
+table.payrollPreview {
+    border: 1px solid #FFFFFF;
+    text-align: center;
+    border-collapse: collapse;
+    position: relative;
+  }
+  table.payrollPreview td, table.payrollPreview th {
+    border: 1px solid #FFFFFF;
+    padding: 3px 2px;
+  }
+  table.payrollPreview tbody td {
+  }
+  table.payrollPreview tr.general{
+    background: rgb(240, 241, 243);
+  }
+  table.payrollPreview tr.BonusAdded{
+    background: rgba(198, 239, 206, 1);
+  }
+  table.payrollPreview tr.LopDeducted{
+    background: rgba(255, 199, 206, 1);
+  }
+  table.payrollPreview thead > tr {
+    background: #0B6FA4;
+    border-bottom: 5px solid #FFFFFF;
+  }
+  table.payrollPreview thead th {
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #FFFFFF;
+  }
+  table.payrollPreview thead th:first-child {
+    border-left: none;
+  }
+  
+  table.payrollPreview tfoot td {
+  }

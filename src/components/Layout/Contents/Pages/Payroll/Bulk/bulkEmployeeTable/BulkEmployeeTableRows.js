@@ -3,7 +3,7 @@ import classes from '../Bulk.module.css';
 import InputSwitch from '../../../../../../UI/Input/InputSwitch';
 
 const BulkEmployeeTableRows =(props) => {
-   console.log(props)
+//    console.log(props)
     return(
         
             <React.Fragment>
@@ -13,11 +13,12 @@ const BulkEmployeeTableRows =(props) => {
                             <td >{props.sno}</td>
                             <td onClick={props.ExpandHandler}>{props.employeeData.id}</td>
                             <td onClick={props.ExpandHandler}>{props.employeeData.employee_name}</td>
-                            <td onClick={props.ExpandHandler}>{props.employeeData.employee_salary}</td>
+                            <td onClick={props.ExpandHandler}>{"₹"+props.employeeData.employee_salary}</td>
                             <td onClick={props.ExpandHandler}>{props.employeeData.LOP}</td>
-                            <td onClick={props.ExpandHandler}>{props.employeeData.CurrentGrossafterLOP}</td>
-                            <td onClick={props.ExpandHandler}>{props.employeeData.OtherAllowance}</td>
-                            <td onClick={props.ExpandHandler}>{props.employeeData.TotalDeductions}</td>
+                            <td onClick={props.ExpandHandler}>{"₹"+props.employeeData.CurrentGrossafterLOP}</td>
+                            <td onClick={props.ExpandHandler}>{"₹"+props.employeeData.OtherAllowance}</td>
+                            <td onClick={props.ExpandHandler}>{"₹"+props.employeeData.TotalDeductions}</td>
+                            <td onClick={props.ExpandHandler}>{"₹"+props.employeeData.NetPay}</td>
                             <td >
                 
                                     {/* <input type='checkbox' 

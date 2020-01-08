@@ -9,7 +9,7 @@ import BasicInput from '../../../../../../UI/Input/BasicInput';
 const Tr =(props)=>{
     return <tr >
             <td >{props.label}</td>
-            <td ><input disabled defaultValue={props.data} style={props.style}></input></td>
+            <td ><input disabled value={props.data} style={props.style}/></td>
             </tr>
 }
 
@@ -71,16 +71,16 @@ const ExpandedEmployeeDetails = (props) =>{
                 <div className={classes.DetailsContainer}>
                         <div className={classes.DetailsDiv} >
                             <div className={classes.DetailsDivChild1}>
-                                <BasicOutput label='Employee Number' disabled value={props.employeeNumber}/>
-                                <BasicOutput label='Total Number Of Days' disabled value={0}/> 
+                                <BasicOutput label='Employee ID' disabled value={props.employeeData.id}/>
+                                <BasicOutput label='Total Number Of Days' disabled value={props.employeeData.TotalNoofdays}/> 
                             </div>
                             <div className={classes.DetailsDivChild1}>
-                                <BasicOutput label='Employee Name' disabled value={props.employeeName}/> 
-                                <BasicOutput label='Number of LOP days' disabled value={3}/> 
+                                <BasicOutput label='Employee Name' disabled value={props.employeeData.employee_name}/> 
+                                <BasicOutput label='Number of LOP days' disabled value={props.employeeData.LOP}/> 
                             </div>
                             <div className={classes.DetailsDivChild1}>
-                                <BasicOutput label='Designation' disabled value='Analyst'/> 
-                                <BasicOutput label='Payable Days' disabled value={5}/>
+                                <BasicOutput label='Designation' disabled value={props.employeeData.Designation}/> 
+                                <BasicOutput label='Payable Days' disabled value={props.employeeData.Paiddays}/>
                             </div> 
                         </div>
                 </div>
@@ -97,13 +97,13 @@ const ExpandedEmployeeDetails = (props) =>{
                                             </tr>
                                             </thead> 
                                             <tbody>
-                                                <Tr label='Basic Pay' data={props.employeeData.BasicPay}/>
-                                                <Tr label='House Rent Allowance' data={1}/>
-                                                <Tr label='Conveyance Allowance' data={2}/>
-                                                <Tr label='Medical Allowance' data={3}/>
-                                                <Tr label='Leave Travel Allowance' data={4}/>
-                                                <Tr label='Other Allowances' data={5}/>
-                                                <Tr label='Total Earnings' data={6}/>
+                                                <Tr label='Basic Pay' data={"₹"+props.employeeData.BasicPay}/>
+                                                <Tr label='House Rent Allowance' data={"₹"+props.employeeData.HRA}/>
+                                                <Tr label='Conveyance Allowance' data={"₹"+props.employeeData.Conveyance}/>
+                                                <Tr label='Medical Allowance' data={"₹"+props.employeeData.Medical}/>
+                                                <Tr label='Leave Travel Allowance' data={"₹"+props.employeeData.LTA}/>
+                                                <Tr label='Other Allowances' data={"₹"+props.employeeData.OtherAllowance}/>
+                                                <Tr label='Total Earnings' data={"₹"+props.employeeData.GrossAmount}/>
                                             </tbody>
                                 </table>
                         </div>
@@ -116,13 +116,13 @@ const ExpandedEmployeeDetails = (props) =>{
                                             </tr>
                                             </thead> 
                                             <tbody>
-                                                <Tr label='PF Employer Contribution' data={7}/>
-                                                <Tr label='PF Employer Contribution' data={8}/>
-                                                <Tr label='Professional Tax' data={9}/>
-                                                <Tr label='Income tax' data={10}/>
+                                                <Tr label='PF Employer Contribution' data={"₹"+props.employeeData.PFEmployer}/>
+                                                <Tr label='PF Employer Contribution' data={"₹"+props.employeeData.PFEmployee}/>
+                                                <Tr label='Professional Tax' data={"₹"+props.employeeData.PT}/>
+                                                <Tr label='Income tax' data={"₹"+props.employeeData.PT}/>
                                                 <Tr style={{visibility:'hidden'}}/>
                                                 <Tr style={{visibility:'hidden'}}/>
-                                                <Tr label='Total Deductions' data={11}/>
+                                                <Tr label='Total Deductions' data={"₹"+props.employeeData.TotalDeductions}/>
                                             </tbody>
                                 </table>
                            </div>
@@ -152,7 +152,7 @@ const ExpandedEmployeeDetails = (props) =>{
                                 </table>
                                 <div >
                                     <p style={{display:'inline',fontWeight:'bold'}}>Net Pay:</p>
-                                    <p style={{display:'inline'}}>{'money Bro!'}</p>
+                                    <p style={{display:'inline'}}>{"₹"+props.employeeData.NetPay}</p>
                                 </div>
                                 <div className={classes.buttonsDiv}>
                                     {EditButton}

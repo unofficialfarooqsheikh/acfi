@@ -3,13 +3,16 @@ import axios from 'axios';
 import {Route} from 'react-router-dom';
 import Bulk from './Bulk/Bulk';
 import LopUpload from './LopUpload/LopUpload';
+import PayrollPreview from './PayrollPreview/PayrollPreview'
 import SecureRoute from '../../../../../containers/SecureRoute/SecureRoute'
 
 class Payroll extends Component{
 
       state ={
             uploaded : false,
-            Data : null
+            Data : null,
+            proceed: false,
+            month : null
       }
       componentDidMount(){
             console.log(this.state)
@@ -24,6 +27,8 @@ class Payroll extends Component{
             //       });
       }
       handleChange = (e) => {
+            if(e.target.result !== null)
+            {
             const reader = new FileReader()
             reader.onload = async (e) => { 
             //   console.log(e.target.result)
@@ -37,24 +42,32 @@ class Payroll extends Component{
                         }
             })
               .then((response) => {
-                  console.log("Response",response);
+                  // console.log("Response",response);
                   this.setState({
                         uploaded: true,
                         Data: response.data
                   });
-                  console.log(this.state)
+                  // console.log(this.state)
             })
             .catch((error) =>{
                 console.log("Error",error);
-                this.setState({
-                  uploaded: true})
             });
-              alert(data)
+            //   alert(data)
             };
             reader.readAsText(e.target.files[0])
             e = e.target.files
-            console.log(e[0].name);
-            console.log(this.state)
+            // console.log(e[0].name);
+            // console.log(this.state)
+            }
+      }
+      ConfirmHandler =(confirm,month)=>{
+      let r = window.confirm("Please make sure Details are Correct! \n cannot Comeback once Proceeded \n any corrections would require to recreate the whole process again");
+      if (r == true) {
+            this.setState({
+                  proceed: confirm,
+                  month : month
+            })
+          }
       }
 render(){
       let LopUploadPopUp = (  
@@ -64,14 +77,22 @@ render(){
       );
       let BulkModule = (
       <div>
-            <Bulk Data={this.state.Data} />
+            <Bulk Data={this.state.Data} confirm={this.ConfirmHandler}/>
       </div>);
+      let PayrollPreviewModule = (
+            <div>
+                  <PayrollPreview data={this.state.Data}/>
+            </div>
+      )   
       let RenderedModule= null;
-      if(this.state.uploaded === true){
+      if(this.state.uploaded === true && this.state.proceed === false){
             RenderedModule = BulkModule;
       }
-      else if(this.state.uploaded !== true){
+      else if(this.state.uploaded !== true && this.state.proceed === false){
             RenderedModule = LopUploadPopUp;
+      }
+      else {
+            RenderedModule = PayrollPreviewModule;
       }
     return(
       RenderedModule
