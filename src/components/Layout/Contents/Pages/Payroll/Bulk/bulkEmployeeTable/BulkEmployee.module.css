@@ -1,7 +1,6 @@
 .Container{
     width: 75vw;
     height: 64vh;
-    overflow: auto;
     margin: auto;
 }
 .buttonsDiv{}

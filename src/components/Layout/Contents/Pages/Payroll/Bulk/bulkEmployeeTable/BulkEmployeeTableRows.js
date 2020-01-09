@@ -4,6 +4,10 @@ import InputSwitch from '../../../../../../UI/Input/InputSwitch';
 
 const BulkEmployeeTableRows =(props) => {
 //    console.log(props)
+        var SelectButton = null
+        if(props.selectButton){
+                SelectButton = (<InputSwitch id={props.employeeData.id} change={props.change} checkedState={props.checkedState} label='Select'/>)
+        }
     return(
         
             <React.Fragment>
@@ -27,7 +31,7 @@ const BulkEmployeeTableRows =(props) => {
                                     checked={props.checkedState}  
                                     />
                                         <label htmlFor={props.id}>Select</label> */}
-                                <InputSwitch id={props.id} change={props.change} checkedState={props.checkedState} label='Select'/>
+                                {SelectButton}
                                 </td>  
                     </tr>
             </React.Fragment>

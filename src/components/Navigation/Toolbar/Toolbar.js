@@ -27,7 +27,7 @@ const Toolbar = ( props ) => {
                <img src={Image} alt='UserIcon' className={classes.UserImage}></img>
               <div className={classes.UserDetails}>
                    <p className={classes.UserWelcome}>Welcome: <em><strong>{'Aruna'}</strong></em> </p>
-                   <p className={classes.UserAuthority}>Authority: <em><strong>{'Admin'}</strong></em> </p>
+                   <p className={classes.UserAuthority}>Authority: <em><strong>{'AE'}</strong></em> </p>
               </div>
            </div>
         </header>

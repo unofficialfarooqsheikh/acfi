@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import classes from './payrollPreview.module.css'
+import classes from './payrollPreview.module.css';
+import Button from 'react-bootstrap/Button';
 const PayrollPreview= (props)=>{
 
     let data = props.data
@@ -25,12 +26,12 @@ const PayrollPreview= (props)=>{
     return(
 
         <div>
-            <div>
-                <h1>Payroll Preview - October</h1>
+            <div className={classes.heading}>
+                <div><h1>Payroll Preview - October</h1></div>
                 <div>
-                    <span><div className={classes.Square} style={{backgroundColor: "rgb(240, 241, 243)"}}></div>:Bonus Added</span> 
-                    <span><div className={classes.Square} style={{backgroundColor: "rgba(198, 239, 206, 1)"}}></div>:LOP Deducted</span> 
-                    <span><div className={classes.Square} style={{backgroundColor: "rgba(255, 199, 206, 1)"}}></div>:General </span> 
+                    <span>{"   "}<div className={classes.Square} style={{backgroundColor: "rgba(198, 239, 206, 1)"}}></div>{" "}:Bonus Added</span> 
+                    <span>{"   "}<div className={classes.Square} style={{backgroundColor: "rgba(255, 199, 206, 1)"}}></div>{" "}:LOP Deducted</span> 
+                    <span>{"   "}<div className={classes.Square} style={{backgroundColor: "rgb(240, 241, 243)"}}></div>{" "}:General </span> 
                 </div>
             </div>
             <div className={classes.TableContainer}>
@@ -51,8 +52,8 @@ const PayrollPreview= (props)=>{
                 </table>
             </div>
             <div className={classes.buttons}>
-                <button>Cancel</button>
-                <button>Confirm</button>
+                <Button onClick={()=>{props.comeback()}}>Cancel</Button>
+                <Button onClick={()=>{props.confirmPayrollPreview()}}>Confirm</Button>
             </div>
         </div>
     );

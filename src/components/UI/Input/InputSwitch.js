@@ -1,8 +1,8 @@
 import React from 'react';
-import classes from './InputSwitch.module.css'
+import classes from './InputSwitch.module.css';
 
 const InputSwitch = (props) => {
-
+    // console.log(props)
    return(
    <div className={classes.InputSwitch}>
     <input type='checkbox' 
@@ -10,7 +10,7 @@ const InputSwitch = (props) => {
                                 onChange={props.change} 
                                 checked={props.checkedState}  
                                 />
-<label htmlFor={props.id}>{props.label}</label>
+    <label style={props.style} htmlFor={props.id}>{props.label}</label>
     </div>);
 }
 export default InputSwitch;

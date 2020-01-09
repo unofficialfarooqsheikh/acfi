@@ -21,6 +21,7 @@ class Bulk extends Component{
         individualEmployeeId: null,
         individualEmployeeData: null,
         month: 'None',
+        year: null,
         confirm: false
     }
     componentDidMount(){
@@ -29,9 +30,10 @@ class Bulk extends Component{
         const data = this.props.Data;
                 // console.log(data);
                 //making data be duplicted in a variable which can be stored in the state
-                const UpdatedEmployeeDetails = data.map(alldata =>{
+                const UpdatedEmployeeDetails = data.map((alldata,sno) =>{
                     return{
                         ...alldata,
+                        sno: sno,
                     checkState: false
                 }
             });
@@ -61,8 +63,12 @@ class Bulk extends Component{
         month[11] = "December";
 
         const Month = month[date.getMonth()]
-        // console.log(Month)
-        this.setState({month: Month});
+        const Year = date.getFullYear()
+        console.log(Year)
+        this.setState({
+            month: Month,
+            year:  Year
+        });
         // console.log(this.state)
     }
     
@@ -105,8 +111,8 @@ class Bulk extends Component{
         // console.log(e.target.value)
     }
     individualEmployeeHandler =(e,id) =>{
-        const indEmployee=this.state.individualEmployee
-        console.log(e,id);
+        const indEmployee=this.state.individualEmployee;
+        console.log(e,this.state.employeeDetails);
         this.setState({individualEmployee: !(indEmployee),
                        individualEmployeeData:this.state.employeeDetails[id],
                        individualEmployeeId: id })
@@ -148,18 +154,19 @@ render(){
             return <BulkEmployeeTableRows
                     key={alldata.id}
                     sno={sno+1} 
-                    ExpandHandler={(e)=>this.individualEmployeeHandler(e,sno)}
+                    ExpandHandler={(e)=>this.individualEmployeeHandler(e,alldata.sno)}
                     employeeData = {alldata}
                     classes={classes}
                     checkedState={alldata.checkState}
                     change={(e) => this.individualChangeHandler(e,alldata.id) }
+                    selectButton = {true}
                 />
             });
             ExpandedEmployee = null;
         }
         else{
-            // console.log(Employees)
             const individualEmployeedata = this.state.individualEmployeeData;
+            console.log(individualEmployeedata)
             Employees = (
             <BulkEmployeeTableRows
                 sno={1}
@@ -167,6 +174,7 @@ render(){
                 ExpandHandler={(e)=>this.individualEmployeeHandler(e,individualEmployeedata.id)}
                 employeeData = {individualEmployeedata}
                 change={(e) => this.individualChangeHandler(e,individualEmployeedata.id) }
+                selectButton = {false}
             />);
             ExpandedEmployee= (
             <ExpandedEmployeeDetails 
@@ -180,10 +188,13 @@ render(){
         let CancelConfirmButtons = 
         (ExpandedEmployee === null) 
         ?<div className={classes.CancelConfirmButtons}>
-         <Button>Cancel</Button>
+         <Button onClick={()=>{
+            this.props.cancel()   
+         }}
+         >Cancel</Button>
          <Button onClick={()=>{
              if(this.state.selectAll){
-                this.props.confirm(this.state.selectAll,this.state.month)
+                this.props.confirm(this.state.selectAll,this.state.month,this.state.year)
             }
             else{
                 alert("Every Employee must be selected to proceed!")
@@ -209,30 +220,33 @@ render(){
                     />
             </div>
 <div style={{display:'flex',alignItems:'center'}}><h5 className={classes.headingsInline}>Pay Roll for the month of : {" "}</h5><h2 className={classes.headingsInline}>{this.state.month}</h2></div>
-            <Table bordered hover size="sm"  className={classes.Bulk}>
-                    <thead>
-                    <tr>
-                    
-                    <th>S.no</th> 
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Gross Salary</th>
-                    <th>LOP</th>
-                    <th>Current Gross</th>
-                    <th>Additional Payments</th>
-                    <th>Deductions</th>
-                    <th>Net Pay</th>
-                    <th><input type="checkbox" id="box-1"  onChange={(e) =>{this.selectAllHandler(e)}} checked={this.state.selectAll}/>
-                        <label htmlFor="box-1">Select All</label>
-                        </th>
-                    </tr>
-                    </thead>
-                    
-
-                    <tbody>{employeesWithLoading }</tbody>
-            </Table>
+            <div className={classes.TableContainer}>
+                <Table bordered hover size="sm"  className={classes.Bulk}>
+                        <thead>
+                        <tr>
+                        
+                        <th className={classes.bulkthead}>S.no</th> 
+                        <th className={classes.bulkthead}>Id</th>
+                        <th className={classes.bulkthead}>Name</th>
+                        <th className={classes.bulkthead}>Gross Salary</th>
+                        <th className={classes.bulkthead}>LOP</th>
+                        <th className={classes.bulkthead}>Current Gross</th>
+                        <th className={classes.bulkthead}>Additional Payments</th>
+                        <th className={classes.bulkthead}>Deductions</th>
+                        <th className={classes.bulkthead}>Net Pay</th>
+                        <th className={classes.bulkthead}>
+                            <input type="checkbox" id="box-1"  onChange={(e) =>{this.selectAllHandler(e)}} checked={this.state.selectAll}/>
+                            <label htmlFor="box-1">Select All</label>
+                            </th>
+                        </tr>
+                        </thead>
+                        
+    
+                        <tbody>{employeesWithLoading }</tbody>
+                </Table>
             {Skeletons}
             {ExpandedEmployee}
+            </div>
             {CancelConfirmButtons}
             
         </div>

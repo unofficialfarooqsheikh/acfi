@@ -1,0 +1,17 @@
+.ReportCard{
+    border: solid 1px;
+    margin: auto;
+    width: fit-content;
+}
+.heading{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    width: 100%;
+}
+.heading  input[type="checkbox"] + label:before {
+  top: 19px;
+}
+.heading input[type="checkbox"]:checked + label:before {
+  top: 19px;
+}

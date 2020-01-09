@@ -5,14 +5,18 @@ import Bulk from './Bulk/Bulk';
 import LopUpload from './LopUpload/LopUpload';
 import PayrollPreview from './PayrollPreview/PayrollPreview'
 import SecureRoute from '../../../../../containers/SecureRoute/SecureRoute'
+import Reports from './Reports/Reports';
 
 class Payroll extends Component{
 
       state ={
             uploaded : false,
             Data : null,
-            proceed: false,
-            month : null
+            proceedtoPreview: false,
+            month : null,
+            year: null,
+            comeback: false,
+            proceedForReports: false,
       }
       componentDidMount(){
             console.log(this.state)
@@ -60,14 +64,43 @@ class Payroll extends Component{
             // console.log(this.state)
             }
       }
-      ConfirmHandler =(confirm,month)=>{
-      let r = window.confirm("Please make sure Details are Correct! \n cannot Comeback once Proceeded \n any corrections would require to recreate the whole process again");
+      ConfirmHandler =(confirm,month,year)=>{
+      let r = window.confirm("Please make sure Details are Correct! Then only proceed");
       if (r == true) {
+            //      ______________________________________
+            var url= "http://127.0.0.1:5000/upload";
+            axios.post(url,this.state.Data,{
+                  headers: {
+                        "Content-Type": "application/json",
+                        'Access-Control-Allow-Origin': '*',
+                              }
+                  })
+                  .then((response) => {
+                        console.log("Response",response);
+                        // console.log(this.state)
+                  })
+            
+      //      ______________________________________
             this.setState({
-                  proceed: confirm,
-                  month : month
+                  proceedtoPreview: confirm,
+                  month : month,
+                  year: year
             })
           }
+      }
+      ComebackHandler = () =>{
+            this.setState({proceedtoPreview: false})
+      }
+      ConfirmPayrollPreviewHandler =()=>{
+            console.log(this.state.Data)
+      
+            this.setState({proceedForReports: true})
+      }
+      CancelHandler = () =>{
+            this.setState({uploaded: false})
+      }
+      resultFormReportsModuleHandler =()=>{
+            alert("Success")
       }
 render(){
       let LopUploadPopUp = (  
@@ -77,22 +110,28 @@ render(){
       );
       let BulkModule = (
       <div>
-            <Bulk Data={this.state.Data} confirm={this.ConfirmHandler}/>
+            <Bulk Data={this.state.Data} confirm={this.ConfirmHandler} cancel={this.CancelHandler}/>
       </div>);
       let PayrollPreviewModule = (
             <div>
-                  <PayrollPreview data={this.state.Data}/>
+                  <PayrollPreview data={this.state.Data} comeback={this.ComebackHandler} confirmPayrollPreview={this.ConfirmPayrollPreviewHandler}/>
             </div>
-      )   
+      ) 
+      let ReportsModule =(
+           <Reports month={this.state.month} year={this.state.year} result={this.resultFormReportsModuleHandler}/>
+      ) 
       let RenderedModule= null;
-      if(this.state.uploaded === true && this.state.proceed === false){
+      if(this.state.uploaded === true && this.state.proceedtoPreview === false && this.state.proceedForReports !== true){
             RenderedModule = BulkModule;
       }
-      else if(this.state.uploaded !== true && this.state.proceed === false){
+      else if(this.state.uploaded !== true && this.state.proceedtoPreview === false && this.state.proceedForReports !== true){
             RenderedModule = LopUploadPopUp;
       }
-      else {
+      else if(this.state.uploaded === true && this.state.proceedtoPreview === true && this.state.proceedForReports !== true){
             RenderedModule = PayrollPreviewModule;
+      }
+      else if(this.state.uploaded === true && this.state.proceedtoPreview === true && this.state.proceedForReports === true){
+            RenderedModule = ReportsModule;
       }
     return(
       RenderedModule
