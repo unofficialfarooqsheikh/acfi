@@ -14,7 +14,8 @@ import NotificationBar from '../../Navigation/NotificationBar/NotificationBar'
 
 
 const MainPageLayout =( props ) => {
-    // console.log(props)
+    console.log("MainPageLayout here first")
+    console.log("MainPageLayout",props)
     const [sidenav,setSidenav] = useState(false);
     const sidenavHandler =() => {
         setSidenav(!sidenav);
@@ -30,8 +31,8 @@ const MainPageLayout =( props ) => {
             <NotificationBar/>
             <ContentsContainer >
             <Backdrop left={margin} show={sidenav} clicked ={sidenavHandler}/>
+            <SecureRoute path={props.match.url+'/WorkForce'} component={WorkForce}/>
             <SecureRoute path={props.match.url+'/Payroll'} component={Payroll}/>
-            <SecureRoute path={props.match.url+'/WorkForce'} exact component={WorkForce}/>
             <SecureRoute path={props.match.url+'/Migrator'} exact component={Migrator}/>
             <SecureRoute path={props.match.url+'/Logs'} component={Logs}/>
             </ContentsContainer>

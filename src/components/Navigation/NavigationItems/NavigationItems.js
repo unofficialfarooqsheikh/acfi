@@ -22,6 +22,7 @@ const navigationItems = (props) => {
                     </NavLink>
                 </li> */}
 
+
                 <li>
                     <NavLink
                         to={{
@@ -34,7 +35,6 @@ const navigationItems = (props) => {
                         <span className={classes.extra}>WorkForce</span>
                     </NavLink>
                 </li>
-
                 <li>
                     <NavLink
                         to={{

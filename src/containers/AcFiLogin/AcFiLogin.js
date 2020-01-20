@@ -110,7 +110,7 @@ class AcFiLogin extends Component {
     }
 
     render(){
-        
+        console.log(this.props)
         let loginPage = (<Login psdshow={this.state.loginAllowed} 
             click={this.showPasswordHandler} 
             inputUserName={(event) => this.inputUserNameHandler(event)}
@@ -124,7 +124,7 @@ class AcFiLogin extends Component {
                loginPage=null;
                 renderLink = (  
                         <Redirect to={{
-                            pathname: '/mainPage/WorkForce',
+                            pathname: this.props.match.url+'mainPage',
                             state: { names: this.state.logedInUser}
                             //      
                             // }

@@ -8,16 +8,19 @@ import SecureRoute from '../../containers/SecureRoute/SecureRoute'
 class MainContainer extends Component {
 
     render() {
-        // console.log("Maincontainer.js"+this.props);
+        console.log("Maincontainer.js"+this.props);
         let authenticate= sessionStorage.getItem('Token');
+        // let authenticate = true;
         // console.log(authenticate)
         let RedirectToMainPage = null;
         if(authenticate){
+            console.log("redirect to mainpage payroll")
             RedirectToMainPage=(<Redirect to={{
-            pathname: '/mainPage/WorkForce'
-            //      
-            // }
+            pathname: '/mainPage'
             }} />); 
+        }
+        else{
+            console.log("else")
         }
         return (
 

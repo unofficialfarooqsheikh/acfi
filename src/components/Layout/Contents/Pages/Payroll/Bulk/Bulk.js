@@ -128,7 +128,7 @@ class Bulk extends Component{
     //     }
     // }
 render(){
-    // console.log(this.props)
+    console.log(this.props)
     //  the filtering of employees from state based on the input at search box
         const filteredEmployeeDetails =this.state.employeeDetails.filter((employee) => {
         let FinalResult;let filtersearch=(a) => {
